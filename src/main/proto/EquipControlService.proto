@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package com.grpcproject.smartfarm;
+
+option java_multiple_files = false;
+option java_package = "com.grpcproject.smartfarm.EquipControlService";
+option java_outer_classname = "EquipControlServiceProto";
+
+service equipControlService{
+  rpc equipPowerControl(stream EquipPowerReq) returns (EquipPowerRes);
+  rpc equipStatus(EquipStatusReq) returns (stream EquipStatusRes);
+}
+
+message EquipPowerReq{
+  string equipName = 1;
+}
+
+message EquipPowerRes{
+  int32 equipPowerStatus = 1;
+}
+
+message EquipStatusReq{
+  string equipStatusRequest = 1;
+}
+
+message EquipStatusRes{
+  string equipName = 1;
+  int32 equipStatusCode = 2;
+}

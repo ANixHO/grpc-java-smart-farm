@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package com.grpcproject.smartfarm;
+
+option java_multiple_files = false;
+option java_package = "com.grpcproject.smartfarm.SensorDataCollectService";
+option java_outer_classname = "SensorDataCollectServiceProto";
+
+service SensorDataCollectService{
+  rpc saveSensorData(stream SaveSensorDataReq) returns (saveSensorDataRes);
+}
+
+message SaveSensorDataReq {
+  string sensorName = 1;
+  int32 sensorData = 2;
+}
+
+message saveSensorDataRes{
+  string response = 1;
+}

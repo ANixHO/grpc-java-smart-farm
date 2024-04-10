@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package com.grpcproject.smartfarm;
+
+option java_multiple_files = false;
+option java_package = "com.grpcproject.smartfarm.UserMonitorAndControlService";
+option java_outer_classname = "UserMonitorAndControlServiceProto";
+
+service UserMonitorAndControlService{
+  rpc refreshSensorData(RefreshSensorDataReq) returns (stream RefreshSensorDataRes);
+  rpc runEquipment (stream RunEquipReq) returns (stream EquipRunningStatusRes);
+}
+
+message RefreshSensorDataReq{
+  string request = 1;
+}
+
+message RefreshSensorDataRes{
+  string sensorName = 1;
+  int32 sensorData = 2;
+}
+
+message RunEquipReq{
+  string equipName = 1;
+  int64 equipRuntime = 2;
+}
+
+message EquipRunningStatusRes{
+  string equipName = 1;
+  int64 equipRunningTime = 2;
+}
+
