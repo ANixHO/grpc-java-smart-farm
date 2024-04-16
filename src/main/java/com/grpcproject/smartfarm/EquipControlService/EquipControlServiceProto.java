@@ -20,11 +20,19 @@ public final class EquipControlServiceProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * stream request, send equip name, then sever will change the power status
+     * </pre>
+     *
      * <code>string equipName = 1;</code>
      * @return The equipName.
      */
     java.lang.String getEquipName();
     /**
+     * <pre>
+     * stream request, send equip name, then sever will change the power status
+     * </pre>
+     *
      * <code>string equipName = 1;</code>
      * @return The bytes for equipName.
      */
@@ -71,6 +79,10 @@ public final class EquipControlServiceProto {
     @SuppressWarnings("serial")
     private volatile java.lang.Object equipName_ = "";
     /**
+     * <pre>
+     * stream request, send equip name, then sever will change the power status
+     * </pre>
+     *
      * <code>string equipName = 1;</code>
      * @return The equipName.
      */
@@ -88,6 +100,10 @@ public final class EquipControlServiceProto {
       }
     }
     /**
+     * <pre>
+     * stream request, send equip name, then sever will change the power status
+     * </pre>
+     *
      * <code>string equipName = 1;</code>
      * @return The bytes for equipName.
      */
@@ -434,6 +450,10 @@ public final class EquipControlServiceProto {
 
       private java.lang.Object equipName_ = "";
       /**
+       * <pre>
+       * stream request, send equip name, then sever will change the power status
+       * </pre>
+       *
        * <code>string equipName = 1;</code>
        * @return The equipName.
        */
@@ -450,6 +470,10 @@ public final class EquipControlServiceProto {
         }
       }
       /**
+       * <pre>
+       * stream request, send equip name, then sever will change the power status
+       * </pre>
+       *
        * <code>string equipName = 1;</code>
        * @return The bytes for equipName.
        */
@@ -467,6 +491,10 @@ public final class EquipControlServiceProto {
         }
       }
       /**
+       * <pre>
+       * stream request, send equip name, then sever will change the power status
+       * </pre>
+       *
        * <code>string equipName = 1;</code>
        * @param value The equipName to set.
        * @return This builder for chaining.
@@ -480,6 +508,10 @@ public final class EquipControlServiceProto {
         return this;
       }
       /**
+       * <pre>
+       * stream request, send equip name, then sever will change the power status
+       * </pre>
+       *
        * <code>string equipName = 1;</code>
        * @return This builder for chaining.
        */
@@ -490,6 +522,10 @@ public final class EquipControlServiceProto {
         return this;
       }
       /**
+       * <pre>
+       * stream request, send equip name, then sever will change the power status
+       * </pre>
+       *
        * <code>string equipName = 1;</code>
        * @param value The bytes for equipName to set.
        * @return This builder for chaining.
@@ -572,10 +608,24 @@ public final class EquipControlServiceProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int32 equipPowerStatus = 1;</code>
+     * <pre>
+     * unary response, response success sentence
+     * </pre>
+     *
+     * <code>string equipPowerStatus = 1;</code>
      * @return The equipPowerStatus.
      */
-    int getEquipPowerStatus();
+    java.lang.String getEquipPowerStatus();
+    /**
+     * <pre>
+     * unary response, response success sentence
+     * </pre>
+     *
+     * <code>string equipPowerStatus = 1;</code>
+     * @return The bytes for equipPowerStatus.
+     */
+    com.google.protobuf.ByteString
+        getEquipPowerStatusBytes();
   }
   /**
    * Protobuf type {@code com.grpcproject.smartfarm.EquipPowerRes}
@@ -590,6 +640,7 @@ public final class EquipControlServiceProto {
       super(builder);
     }
     private EquipPowerRes() {
+      equipPowerStatus_ = "";
     }
 
     @java.lang.Override
@@ -613,14 +664,50 @@ public final class EquipControlServiceProto {
     }
 
     public static final int EQUIPPOWERSTATUS_FIELD_NUMBER = 1;
-    private int equipPowerStatus_ = 0;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object equipPowerStatus_ = "";
     /**
-     * <code>int32 equipPowerStatus = 1;</code>
+     * <pre>
+     * unary response, response success sentence
+     * </pre>
+     *
+     * <code>string equipPowerStatus = 1;</code>
      * @return The equipPowerStatus.
      */
     @java.lang.Override
-    public int getEquipPowerStatus() {
-      return equipPowerStatus_;
+    public java.lang.String getEquipPowerStatus() {
+      java.lang.Object ref = equipPowerStatus_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        equipPowerStatus_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * unary response, response success sentence
+     * </pre>
+     *
+     * <code>string equipPowerStatus = 1;</code>
+     * @return The bytes for equipPowerStatus.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getEquipPowerStatusBytes() {
+      java.lang.Object ref = equipPowerStatus_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        equipPowerStatus_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -637,8 +724,8 @@ public final class EquipControlServiceProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (equipPowerStatus_ != 0) {
-        output.writeInt32(1, equipPowerStatus_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(equipPowerStatus_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, equipPowerStatus_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -649,9 +736,8 @@ public final class EquipControlServiceProto {
       if (size != -1) return size;
 
       size = 0;
-      if (equipPowerStatus_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, equipPowerStatus_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(equipPowerStatus_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, equipPowerStatus_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -668,8 +754,8 @@ public final class EquipControlServiceProto {
       }
       com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerRes other = (com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerRes) obj;
 
-      if (getEquipPowerStatus()
-          != other.getEquipPowerStatus()) return false;
+      if (!getEquipPowerStatus()
+          .equals(other.getEquipPowerStatus())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -682,7 +768,7 @@ public final class EquipControlServiceProto {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + EQUIPPOWERSTATUS_FIELD_NUMBER;
-      hash = (53 * hash) + getEquipPowerStatus();
+      hash = (53 * hash) + getEquipPowerStatus().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -814,7 +900,7 @@ public final class EquipControlServiceProto {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
-        equipPowerStatus_ = 0;
+        equipPowerStatus_ = "";
         return this;
       }
 
@@ -897,8 +983,10 @@ public final class EquipControlServiceProto {
 
       public Builder mergeFrom(com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerRes other) {
         if (other == com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerRes.getDefaultInstance()) return this;
-        if (other.getEquipPowerStatus() != 0) {
-          setEquipPowerStatus(other.getEquipPowerStatus());
+        if (!other.getEquipPowerStatus().isEmpty()) {
+          equipPowerStatus_ = other.equipPowerStatus_;
+          bitField0_ |= 0x00000001;
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -926,11 +1014,11 @@ public final class EquipControlServiceProto {
               case 0:
                 done = true;
                 break;
-              case 8: {
-                equipPowerStatus_ = input.readInt32();
+              case 10: {
+                equipPowerStatus_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 8
+              } // case 10
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -948,34 +1036,94 @@ public final class EquipControlServiceProto {
       }
       private int bitField0_;
 
-      private int equipPowerStatus_ ;
+      private java.lang.Object equipPowerStatus_ = "";
       /**
-       * <code>int32 equipPowerStatus = 1;</code>
+       * <pre>
+       * unary response, response success sentence
+       * </pre>
+       *
+       * <code>string equipPowerStatus = 1;</code>
        * @return The equipPowerStatus.
        */
-      @java.lang.Override
-      public int getEquipPowerStatus() {
-        return equipPowerStatus_;
+      public java.lang.String getEquipPowerStatus() {
+        java.lang.Object ref = equipPowerStatus_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          equipPowerStatus_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>int32 equipPowerStatus = 1;</code>
+       * <pre>
+       * unary response, response success sentence
+       * </pre>
+       *
+       * <code>string equipPowerStatus = 1;</code>
+       * @return The bytes for equipPowerStatus.
+       */
+      public com.google.protobuf.ByteString
+          getEquipPowerStatusBytes() {
+        java.lang.Object ref = equipPowerStatus_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          equipPowerStatus_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * unary response, response success sentence
+       * </pre>
+       *
+       * <code>string equipPowerStatus = 1;</code>
        * @param value The equipPowerStatus to set.
        * @return This builder for chaining.
        */
-      public Builder setEquipPowerStatus(int value) {
-
+      public Builder setEquipPowerStatus(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
         equipPowerStatus_ = value;
         bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 equipPowerStatus = 1;</code>
+       * <pre>
+       * unary response, response success sentence
+       * </pre>
+       *
+       * <code>string equipPowerStatus = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearEquipPowerStatus() {
+        equipPowerStatus_ = getDefaultInstance().getEquipPowerStatus();
         bitField0_ = (bitField0_ & ~0x00000001);
-        equipPowerStatus_ = 0;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * unary response, response success sentence
+       * </pre>
+       *
+       * <code>string equipPowerStatus = 1;</code>
+       * @param value The bytes for equipPowerStatus to set.
+       * @return This builder for chaining.
+       */
+      public Builder setEquipPowerStatusBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        equipPowerStatus_ = value;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
@@ -1048,11 +1196,19 @@ public final class EquipControlServiceProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * unary request,
+     * </pre>
+     *
      * <code>string equipStatusRequest = 1;</code>
      * @return The equipStatusRequest.
      */
     java.lang.String getEquipStatusRequest();
     /**
+     * <pre>
+     * unary request,
+     * </pre>
+     *
      * <code>string equipStatusRequest = 1;</code>
      * @return The bytes for equipStatusRequest.
      */
@@ -1099,6 +1255,10 @@ public final class EquipControlServiceProto {
     @SuppressWarnings("serial")
     private volatile java.lang.Object equipStatusRequest_ = "";
     /**
+     * <pre>
+     * unary request,
+     * </pre>
+     *
      * <code>string equipStatusRequest = 1;</code>
      * @return The equipStatusRequest.
      */
@@ -1116,6 +1276,10 @@ public final class EquipControlServiceProto {
       }
     }
     /**
+     * <pre>
+     * unary request,
+     * </pre>
+     *
      * <code>string equipStatusRequest = 1;</code>
      * @return The bytes for equipStatusRequest.
      */
@@ -1462,6 +1626,10 @@ public final class EquipControlServiceProto {
 
       private java.lang.Object equipStatusRequest_ = "";
       /**
+       * <pre>
+       * unary request,
+       * </pre>
+       *
        * <code>string equipStatusRequest = 1;</code>
        * @return The equipStatusRequest.
        */
@@ -1478,6 +1646,10 @@ public final class EquipControlServiceProto {
         }
       }
       /**
+       * <pre>
+       * unary request,
+       * </pre>
+       *
        * <code>string equipStatusRequest = 1;</code>
        * @return The bytes for equipStatusRequest.
        */
@@ -1495,6 +1667,10 @@ public final class EquipControlServiceProto {
         }
       }
       /**
+       * <pre>
+       * unary request,
+       * </pre>
+       *
        * <code>string equipStatusRequest = 1;</code>
        * @param value The equipStatusRequest to set.
        * @return This builder for chaining.
@@ -1508,6 +1684,10 @@ public final class EquipControlServiceProto {
         return this;
       }
       /**
+       * <pre>
+       * unary request,
+       * </pre>
+       *
        * <code>string equipStatusRequest = 1;</code>
        * @return This builder for chaining.
        */
@@ -1518,6 +1698,10 @@ public final class EquipControlServiceProto {
         return this;
       }
       /**
+       * <pre>
+       * unary request,
+       * </pre>
+       *
        * <code>string equipStatusRequest = 1;</code>
        * @param value The bytes for equipStatusRequest to set.
        * @return This builder for chaining.
@@ -1600,11 +1784,19 @@ public final class EquipControlServiceProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * response equip name and its status, 1 is power on and 0 is power off
+     * </pre>
+     *
      * <code>string equipName = 1;</code>
      * @return The equipName.
      */
     java.lang.String getEquipName();
     /**
+     * <pre>
+     * response equip name and its status, 1 is power on and 0 is power off
+     * </pre>
+     *
      * <code>string equipName = 1;</code>
      * @return The bytes for equipName.
      */
@@ -1657,6 +1849,10 @@ public final class EquipControlServiceProto {
     @SuppressWarnings("serial")
     private volatile java.lang.Object equipName_ = "";
     /**
+     * <pre>
+     * response equip name and its status, 1 is power on and 0 is power off
+     * </pre>
+     *
      * <code>string equipName = 1;</code>
      * @return The equipName.
      */
@@ -1674,6 +1870,10 @@ public final class EquipControlServiceProto {
       }
     }
     /**
+     * <pre>
+     * response equip name and its status, 1 is power on and 0 is power off
+     * </pre>
+     *
      * <code>string equipName = 1;</code>
      * @return The bytes for equipName.
      */
@@ -2054,6 +2254,10 @@ public final class EquipControlServiceProto {
 
       private java.lang.Object equipName_ = "";
       /**
+       * <pre>
+       * response equip name and its status, 1 is power on and 0 is power off
+       * </pre>
+       *
        * <code>string equipName = 1;</code>
        * @return The equipName.
        */
@@ -2070,6 +2274,10 @@ public final class EquipControlServiceProto {
         }
       }
       /**
+       * <pre>
+       * response equip name and its status, 1 is power on and 0 is power off
+       * </pre>
+       *
        * <code>string equipName = 1;</code>
        * @return The bytes for equipName.
        */
@@ -2087,6 +2295,10 @@ public final class EquipControlServiceProto {
         }
       }
       /**
+       * <pre>
+       * response equip name and its status, 1 is power on and 0 is power off
+       * </pre>
+       *
        * <code>string equipName = 1;</code>
        * @param value The equipName to set.
        * @return This builder for chaining.
@@ -2100,6 +2312,10 @@ public final class EquipControlServiceProto {
         return this;
       }
       /**
+       * <pre>
+       * response equip name and its status, 1 is power on and 0 is power off
+       * </pre>
+       *
        * <code>string equipName = 1;</code>
        * @return This builder for chaining.
        */
@@ -2110,6 +2326,10 @@ public final class EquipControlServiceProto {
         return this;
       }
       /**
+       * <pre>
+       * response equip name and its status, 1 is power on and 0 is power off
+       * </pre>
+       *
        * <code>string equipName = 1;</code>
        * @param value The bytes for equipName to set.
        * @return This builder for chaining.
@@ -2251,10 +2471,10 @@ public final class EquipControlServiceProto {
       "\n\031EquipControlService.proto\022\031com.grpcpro" +
       "ject.smartfarm\"\"\n\rEquipPowerReq\022\021\n\tequip" +
       "Name\030\001 \001(\t\")\n\rEquipPowerRes\022\030\n\020equipPowe" +
-      "rStatus\030\001 \001(\005\",\n\016EquipStatusReq\022\032\n\022equip" +
+      "rStatus\030\001 \001(\t\",\n\016EquipStatusReq\022\032\n\022equip" +
       "StatusRequest\030\001 \001(\t\"<\n\016EquipStatusRes\022\021\n" +
       "\tequipName\030\001 \001(\t\022\027\n\017equipStatusCode\030\002 \001(" +
-      "\0052\347\001\n\023equipControlService\022i\n\021equipPowerC" +
+      "\0052\347\001\n\023EquipControlService\022i\n\021equipPowerC" +
       "ontrol\022(.com.grpcproject.smartfarm.Equip" +
       "PowerReq\032(.com.grpcproject.smartfarm.Equ" +
       "ipPowerRes(\001\022e\n\013equipStatus\022).com.grpcpr" +

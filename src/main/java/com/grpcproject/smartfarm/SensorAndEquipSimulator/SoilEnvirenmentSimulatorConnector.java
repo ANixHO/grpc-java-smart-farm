@@ -3,6 +3,7 @@ package com.grpcproject.smartfarm.SensorAndEquipSimulator;
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.util.concurrent.TimeUnit;
 
 public class SoilEnvirenmentSimulatorConnector {
 

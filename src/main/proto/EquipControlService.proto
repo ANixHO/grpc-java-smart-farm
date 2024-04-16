@@ -6,24 +6,24 @@ option java_multiple_files = false;
 option java_package = "com.grpcproject.smartfarm.EquipControlService";
 option java_outer_classname = "EquipControlServiceProto";
 
-service equipControlService{
+service EquipControlService{
   rpc equipPowerControl(stream EquipPowerReq) returns (EquipPowerRes);
   rpc equipStatus(EquipStatusReq) returns (stream EquipStatusRes);
 }
 
 message EquipPowerReq{
-  string equipName = 1;
+  string equipName = 1; // stream request, send equip name, then sever will change the power status
 }
 
 message EquipPowerRes{
-  int32 equipPowerStatus = 1;
+  string equipPowerStatus = 1; // unary response, response success sentence
 }
 
 message EquipStatusReq{
-  string equipStatusRequest = 1;
+  string equipStatusRequest = 1; // unary request, send the equip name that want to check status
 }
 
 message EquipStatusRes{
-  string equipName = 1;
+  string equipName = 1; // response equip name and its status, 1 is power on and 0 is power off
   int32 equipStatusCode = 2;
 }

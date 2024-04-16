@@ -11,8 +11,8 @@ service SensorDataCollectService{
 }
 
 message SaveSensorDataReq {
-  string sensorName = 1;
-  int32 sensorData = 2;
+  int32 soilTemp = 1;
+  int32 soilHumidity = 2;
 }
 
 message saveSensorDataRes{

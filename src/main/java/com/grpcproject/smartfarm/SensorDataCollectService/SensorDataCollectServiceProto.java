@@ -20,22 +20,16 @@ public final class SensorDataCollectServiceProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string sensorName = 1;</code>
-     * @return The sensorName.
+     * <code>int32 soilTemp = 1;</code>
+     * @return The soilTemp.
      */
-    java.lang.String getSensorName();
-    /**
-     * <code>string sensorName = 1;</code>
-     * @return The bytes for sensorName.
-     */
-    com.google.protobuf.ByteString
-        getSensorNameBytes();
+    int getSoilTemp();
 
     /**
-     * <code>int32 sensorData = 2;</code>
-     * @return The sensorData.
+     * <code>int32 soilHumidity = 2;</code>
+     * @return The soilHumidity.
      */
-    int getSensorData();
+    int getSoilHumidity();
   }
   /**
    * Protobuf type {@code com.grpcproject.smartfarm.SaveSensorDataReq}
@@ -50,7 +44,6 @@ public final class SensorDataCollectServiceProto {
       super(builder);
     }
     private SaveSensorDataReq() {
-      sensorName_ = "";
     }
 
     @java.lang.Override
@@ -73,54 +66,26 @@ public final class SensorDataCollectServiceProto {
               com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataReq.class, com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataReq.Builder.class);
     }
 
-    public static final int SENSORNAME_FIELD_NUMBER = 1;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object sensorName_ = "";
+    public static final int SOILTEMP_FIELD_NUMBER = 1;
+    private int soilTemp_ = 0;
     /**
-     * <code>string sensorName = 1;</code>
-     * @return The sensorName.
+     * <code>int32 soilTemp = 1;</code>
+     * @return The soilTemp.
      */
     @java.lang.Override
-    public java.lang.String getSensorName() {
-      java.lang.Object ref = sensorName_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        sensorName_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string sensorName = 1;</code>
-     * @return The bytes for sensorName.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getSensorNameBytes() {
-      java.lang.Object ref = sensorName_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        sensorName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getSoilTemp() {
+      return soilTemp_;
     }
 
-    public static final int SENSORDATA_FIELD_NUMBER = 2;
-    private int sensorData_ = 0;
+    public static final int SOILHUMIDITY_FIELD_NUMBER = 2;
+    private int soilHumidity_ = 0;
     /**
-     * <code>int32 sensorData = 2;</code>
-     * @return The sensorData.
+     * <code>int32 soilHumidity = 2;</code>
+     * @return The soilHumidity.
      */
     @java.lang.Override
-    public int getSensorData() {
-      return sensorData_;
+    public int getSoilHumidity() {
+      return soilHumidity_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -137,11 +102,11 @@ public final class SensorDataCollectServiceProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sensorName_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, sensorName_);
+      if (soilTemp_ != 0) {
+        output.writeInt32(1, soilTemp_);
       }
-      if (sensorData_ != 0) {
-        output.writeInt32(2, sensorData_);
+      if (soilHumidity_ != 0) {
+        output.writeInt32(2, soilHumidity_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -152,12 +117,13 @@ public final class SensorDataCollectServiceProto {
       if (size != -1) return size;
 
       size = 0;
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sensorName_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, sensorName_);
-      }
-      if (sensorData_ != 0) {
+      if (soilTemp_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, sensorData_);
+          .computeInt32Size(1, soilTemp_);
+      }
+      if (soilHumidity_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, soilHumidity_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -174,10 +140,10 @@ public final class SensorDataCollectServiceProto {
       }
       com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataReq other = (com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataReq) obj;
 
-      if (!getSensorName()
-          .equals(other.getSensorName())) return false;
-      if (getSensorData()
-          != other.getSensorData()) return false;
+      if (getSoilTemp()
+          != other.getSoilTemp()) return false;
+      if (getSoilHumidity()
+          != other.getSoilHumidity()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -189,10 +155,10 @@ public final class SensorDataCollectServiceProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + SENSORNAME_FIELD_NUMBER;
-      hash = (53 * hash) + getSensorName().hashCode();
-      hash = (37 * hash) + SENSORDATA_FIELD_NUMBER;
-      hash = (53 * hash) + getSensorData();
+      hash = (37 * hash) + SOILTEMP_FIELD_NUMBER;
+      hash = (53 * hash) + getSoilTemp();
+      hash = (37 * hash) + SOILHUMIDITY_FIELD_NUMBER;
+      hash = (53 * hash) + getSoilHumidity();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -324,8 +290,8 @@ public final class SensorDataCollectServiceProto {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
-        sensorName_ = "";
-        sensorData_ = 0;
+        soilTemp_ = 0;
+        soilHumidity_ = 0;
         return this;
       }
 
@@ -360,10 +326,10 @@ public final class SensorDataCollectServiceProto {
       private void buildPartial0(com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataReq result) {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.sensorName_ = sensorName_;
+          result.soilTemp_ = soilTemp_;
         }
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.sensorData_ = sensorData_;
+          result.soilHumidity_ = soilHumidity_;
         }
       }
 
@@ -411,13 +377,11 @@ public final class SensorDataCollectServiceProto {
 
       public Builder mergeFrom(com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataReq other) {
         if (other == com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataReq.getDefaultInstance()) return this;
-        if (!other.getSensorName().isEmpty()) {
-          sensorName_ = other.sensorName_;
-          bitField0_ |= 0x00000001;
-          onChanged();
+        if (other.getSoilTemp() != 0) {
+          setSoilTemp(other.getSoilTemp());
         }
-        if (other.getSensorData() != 0) {
-          setSensorData(other.getSensorData());
+        if (other.getSoilHumidity() != 0) {
+          setSoilHumidity(other.getSoilHumidity());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -445,13 +409,13 @@ public final class SensorDataCollectServiceProto {
               case 0:
                 done = true;
                 break;
-              case 10: {
-                sensorName_ = input.readStringRequireUtf8();
+              case 8: {
+                soilTemp_ = input.readInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 10
+              } // case 8
               case 16: {
-                sensorData_ = input.readInt32();
+                soilHumidity_ = input.readInt32();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 16
@@ -472,106 +436,66 @@ public final class SensorDataCollectServiceProto {
       }
       private int bitField0_;
 
-      private java.lang.Object sensorName_ = "";
+      private int soilTemp_ ;
       /**
-       * <code>string sensorName = 1;</code>
-       * @return The sensorName.
-       */
-      public java.lang.String getSensorName() {
-        java.lang.Object ref = sensorName_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          sensorName_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string sensorName = 1;</code>
-       * @return The bytes for sensorName.
-       */
-      public com.google.protobuf.ByteString
-          getSensorNameBytes() {
-        java.lang.Object ref = sensorName_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          sensorName_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string sensorName = 1;</code>
-       * @param value The sensorName to set.
-       * @return This builder for chaining.
-       */
-      public Builder setSensorName(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        sensorName_ = value;
-        bitField0_ |= 0x00000001;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string sensorName = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearSensorName() {
-        sensorName_ = getDefaultInstance().getSensorName();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string sensorName = 1;</code>
-       * @param value The bytes for sensorName to set.
-       * @return This builder for chaining.
-       */
-      public Builder setSensorNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        sensorName_ = value;
-        bitField0_ |= 0x00000001;
-        onChanged();
-        return this;
-      }
-
-      private int sensorData_ ;
-      /**
-       * <code>int32 sensorData = 2;</code>
-       * @return The sensorData.
+       * <code>int32 soilTemp = 1;</code>
+       * @return The soilTemp.
        */
       @java.lang.Override
-      public int getSensorData() {
-        return sensorData_;
+      public int getSoilTemp() {
+        return soilTemp_;
       }
       /**
-       * <code>int32 sensorData = 2;</code>
-       * @param value The sensorData to set.
+       * <code>int32 soilTemp = 1;</code>
+       * @param value The soilTemp to set.
        * @return This builder for chaining.
        */
-      public Builder setSensorData(int value) {
+      public Builder setSoilTemp(int value) {
 
-        sensorData_ = value;
+        soilTemp_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 soilTemp = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSoilTemp() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        soilTemp_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int soilHumidity_ ;
+      /**
+       * <code>int32 soilHumidity = 2;</code>
+       * @return The soilHumidity.
+       */
+      @java.lang.Override
+      public int getSoilHumidity() {
+        return soilHumidity_;
+      }
+      /**
+       * <code>int32 soilHumidity = 2;</code>
+       * @param value The soilHumidity to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSoilHumidity(int value) {
+
+        soilHumidity_ = value;
         bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 sensorData = 2;</code>
+       * <code>int32 soilHumidity = 2;</code>
        * @return This builder for chaining.
        */
-      public Builder clearSensorData() {
+      public Builder clearSoilHumidity() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        sensorData_ = 0;
+        soilHumidity_ = 0;
         onChanged();
         return this;
       }
@@ -1212,7 +1136,7 @@ public final class SensorDataCollectServiceProto {
     java.lang.String[] descriptorData = {
       "\n\036SensorDataCollectService.proto\022\031com.gr" +
       "pcproject.smartfarm\";\n\021SaveSensorDataReq" +
-      "\022\022\n\nsensorName\030\001 \001(\t\022\022\n\nsensorData\030\002 \001(\005" +
+      "\022\020\n\010soilTemp\030\001 \001(\005\022\024\n\014soilHumidity\030\002 \001(\005" +
       "\"%\n\021saveSensorDataRes\022\020\n\010response\030\001 \001(\t2" +
       "\212\001\n\030SensorDataCollectService\022n\n\016saveSens" +
       "orData\022,.com.grpcproject.smartfarm.SaveS" +
@@ -1230,7 +1154,7 @@ public final class SensorDataCollectServiceProto {
     internal_static_com_grpcproject_smartfarm_SaveSensorDataReq_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_grpcproject_smartfarm_SaveSensorDataReq_descriptor,
-        new java.lang.String[] { "SensorName", "SensorData", });
+        new java.lang.String[] { "SoilTemp", "SoilHumidity", });
     internal_static_com_grpcproject_smartfarm_saveSensorDataRes_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_com_grpcproject_smartfarm_saveSensorDataRes_fieldAccessorTable = new

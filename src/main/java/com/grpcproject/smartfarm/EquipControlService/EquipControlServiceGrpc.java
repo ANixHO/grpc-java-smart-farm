@@ -8,11 +8,11 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
     value = "by gRPC proto compiler (version 1.62.2)",
     comments = "Source: EquipControlService.proto")
 @io.grpc.stub.annotations.GrpcGenerated
-public final class equipControlServiceGrpc {
+public final class EquipControlServiceGrpc {
 
-  private equipControlServiceGrpc() {}
+  private EquipControlServiceGrpc() {}
 
-  public static final java.lang.String SERVICE_NAME = "com.grpcproject.smartfarm.equipControlService";
+  public static final java.lang.String SERVICE_NAME = "com.grpcproject.smartfarm.EquipControlService";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerReq,
@@ -26,10 +26,10 @@ public final class equipControlServiceGrpc {
   public static io.grpc.MethodDescriptor<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerReq,
       com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerRes> getEquipPowerControlMethod() {
     io.grpc.MethodDescriptor<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerReq, com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerRes> getEquipPowerControlMethod;
-    if ((getEquipPowerControlMethod = equipControlServiceGrpc.getEquipPowerControlMethod) == null) {
-      synchronized (equipControlServiceGrpc.class) {
-        if ((getEquipPowerControlMethod = equipControlServiceGrpc.getEquipPowerControlMethod) == null) {
-          equipControlServiceGrpc.getEquipPowerControlMethod = getEquipPowerControlMethod =
+    if ((getEquipPowerControlMethod = EquipControlServiceGrpc.getEquipPowerControlMethod) == null) {
+      synchronized (EquipControlServiceGrpc.class) {
+        if ((getEquipPowerControlMethod = EquipControlServiceGrpc.getEquipPowerControlMethod) == null) {
+          EquipControlServiceGrpc.getEquipPowerControlMethod = getEquipPowerControlMethod =
               io.grpc.MethodDescriptor.<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerReq, com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerRes>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "equipPowerControl"))
@@ -38,7 +38,7 @@ public final class equipControlServiceGrpc {
                   com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerRes.getDefaultInstance()))
-              .setSchemaDescriptor(new equipControlServiceMethodDescriptorSupplier("equipPowerControl"))
+              .setSchemaDescriptor(new EquipControlServiceMethodDescriptorSupplier("equipPowerControl"))
               .build();
         }
       }
@@ -57,10 +57,10 @@ public final class equipControlServiceGrpc {
   public static io.grpc.MethodDescriptor<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusReq,
       com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes> getEquipStatusMethod() {
     io.grpc.MethodDescriptor<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusReq, com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes> getEquipStatusMethod;
-    if ((getEquipStatusMethod = equipControlServiceGrpc.getEquipStatusMethod) == null) {
-      synchronized (equipControlServiceGrpc.class) {
-        if ((getEquipStatusMethod = equipControlServiceGrpc.getEquipStatusMethod) == null) {
-          equipControlServiceGrpc.getEquipStatusMethod = getEquipStatusMethod =
+    if ((getEquipStatusMethod = EquipControlServiceGrpc.getEquipStatusMethod) == null) {
+      synchronized (EquipControlServiceGrpc.class) {
+        if ((getEquipStatusMethod = EquipControlServiceGrpc.getEquipStatusMethod) == null) {
+          EquipControlServiceGrpc.getEquipStatusMethod = getEquipStatusMethod =
               io.grpc.MethodDescriptor.<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusReq, com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "equipStatus"))
@@ -69,7 +69,7 @@ public final class equipControlServiceGrpc {
                   com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes.getDefaultInstance()))
-              .setSchemaDescriptor(new equipControlServiceMethodDescriptorSupplier("equipStatus"))
+              .setSchemaDescriptor(new EquipControlServiceMethodDescriptorSupplier("equipStatus"))
               .build();
         }
       }
@@ -80,45 +80,45 @@ public final class equipControlServiceGrpc {
   /**
    * Creates a new async stub that supports all call types for the service
    */
-  public static equipControlServiceStub newStub(io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<equipControlServiceStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<equipControlServiceStub>() {
+  public static EquipControlServiceStub newStub(io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<EquipControlServiceStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<EquipControlServiceStub>() {
         @java.lang.Override
-        public equipControlServiceStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new equipControlServiceStub(channel, callOptions);
+        public EquipControlServiceStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new EquipControlServiceStub(channel, callOptions);
         }
       };
-    return equipControlServiceStub.newStub(factory, channel);
+    return EquipControlServiceStub.newStub(factory, channel);
   }
 
   /**
    * Creates a new blocking-style stub that supports unary and streaming output calls on the service
    */
-  public static equipControlServiceBlockingStub newBlockingStub(
+  public static EquipControlServiceBlockingStub newBlockingStub(
       io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<equipControlServiceBlockingStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<equipControlServiceBlockingStub>() {
+    io.grpc.stub.AbstractStub.StubFactory<EquipControlServiceBlockingStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<EquipControlServiceBlockingStub>() {
         @java.lang.Override
-        public equipControlServiceBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new equipControlServiceBlockingStub(channel, callOptions);
+        public EquipControlServiceBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new EquipControlServiceBlockingStub(channel, callOptions);
         }
       };
-    return equipControlServiceBlockingStub.newStub(factory, channel);
+    return EquipControlServiceBlockingStub.newStub(factory, channel);
   }
 
   /**
    * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
-  public static equipControlServiceFutureStub newFutureStub(
+  public static EquipControlServiceFutureStub newFutureStub(
       io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<equipControlServiceFutureStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<equipControlServiceFutureStub>() {
+    io.grpc.stub.AbstractStub.StubFactory<EquipControlServiceFutureStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<EquipControlServiceFutureStub>() {
         @java.lang.Override
-        public equipControlServiceFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new equipControlServiceFutureStub(channel, callOptions);
+        public EquipControlServiceFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new EquipControlServiceFutureStub(channel, callOptions);
         }
       };
-    return equipControlServiceFutureStub.newStub(factory, channel);
+    return EquipControlServiceFutureStub.newStub(factory, channel);
   }
 
   /**
@@ -141,30 +141,30 @@ public final class equipControlServiceGrpc {
   }
 
   /**
-   * Base class for the server implementation of the service equipControlService.
+   * Base class for the server implementation of the service EquipControlService.
    */
-  public static abstract class equipControlServiceImplBase
+  public static abstract class EquipControlServiceImplBase
       implements io.grpc.BindableService, AsyncService {
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return equipControlServiceGrpc.bindService(this);
+      return EquipControlServiceGrpc.bindService(this);
     }
   }
 
   /**
-   * A stub to allow clients to do asynchronous rpc calls to service equipControlService.
+   * A stub to allow clients to do asynchronous rpc calls to service EquipControlService.
    */
-  public static final class equipControlServiceStub
-      extends io.grpc.stub.AbstractAsyncStub<equipControlServiceStub> {
-    private equipControlServiceStub(
+  public static final class EquipControlServiceStub
+      extends io.grpc.stub.AbstractAsyncStub<EquipControlServiceStub> {
+    private EquipControlServiceStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected equipControlServiceStub build(
+    protected EquipControlServiceStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new equipControlServiceStub(channel, callOptions);
+      return new EquipControlServiceStub(channel, callOptions);
     }
 
     /**
@@ -185,19 +185,19 @@ public final class equipControlServiceGrpc {
   }
 
   /**
-   * A stub to allow clients to do synchronous rpc calls to service equipControlService.
+   * A stub to allow clients to do synchronous rpc calls to service EquipControlService.
    */
-  public static final class equipControlServiceBlockingStub
-      extends io.grpc.stub.AbstractBlockingStub<equipControlServiceBlockingStub> {
-    private equipControlServiceBlockingStub(
+  public static final class EquipControlServiceBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<EquipControlServiceBlockingStub> {
+    private EquipControlServiceBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected equipControlServiceBlockingStub build(
+    protected EquipControlServiceBlockingStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new equipControlServiceBlockingStub(channel, callOptions);
+      return new EquipControlServiceBlockingStub(channel, callOptions);
     }
 
     /**
@@ -210,19 +210,19 @@ public final class equipControlServiceGrpc {
   }
 
   /**
-   * A stub to allow clients to do ListenableFuture-style rpc calls to service equipControlService.
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service EquipControlService.
    */
-  public static final class equipControlServiceFutureStub
-      extends io.grpc.stub.AbstractFutureStub<equipControlServiceFutureStub> {
-    private equipControlServiceFutureStub(
+  public static final class EquipControlServiceFutureStub
+      extends io.grpc.stub.AbstractFutureStub<EquipControlServiceFutureStub> {
+    private EquipControlServiceFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected equipControlServiceFutureStub build(
+    protected EquipControlServiceFutureStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new equipControlServiceFutureStub(channel, callOptions);
+      return new EquipControlServiceFutureStub(channel, callOptions);
     }
   }
 
@@ -288,9 +288,9 @@ public final class equipControlServiceGrpc {
         .build();
   }
 
-  private static abstract class equipControlServiceBaseDescriptorSupplier
+  private static abstract class EquipControlServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
-    equipControlServiceBaseDescriptorSupplier() {}
+    EquipControlServiceBaseDescriptorSupplier() {}
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
@@ -299,21 +299,21 @@ public final class equipControlServiceGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
-      return getFileDescriptor().findServiceByName("equipControlService");
+      return getFileDescriptor().findServiceByName("EquipControlService");
     }
   }
 
-  private static final class equipControlServiceFileDescriptorSupplier
-      extends equipControlServiceBaseDescriptorSupplier {
-    equipControlServiceFileDescriptorSupplier() {}
+  private static final class EquipControlServiceFileDescriptorSupplier
+      extends EquipControlServiceBaseDescriptorSupplier {
+    EquipControlServiceFileDescriptorSupplier() {}
   }
 
-  private static final class equipControlServiceMethodDescriptorSupplier
-      extends equipControlServiceBaseDescriptorSupplier
+  private static final class EquipControlServiceMethodDescriptorSupplier
+      extends EquipControlServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
     private final java.lang.String methodName;
 
-    equipControlServiceMethodDescriptorSupplier(java.lang.String methodName) {
+    EquipControlServiceMethodDescriptorSupplier(java.lang.String methodName) {
       this.methodName = methodName;
     }
 
@@ -328,11 +328,11 @@ public final class equipControlServiceGrpc {
   public static io.grpc.ServiceDescriptor getServiceDescriptor() {
     io.grpc.ServiceDescriptor result = serviceDescriptor;
     if (result == null) {
-      synchronized (equipControlServiceGrpc.class) {
+      synchronized (EquipControlServiceGrpc.class) {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new equipControlServiceFileDescriptorSupplier())
+              .setSchemaDescriptor(new EquipControlServiceFileDescriptorSupplier())
               .addMethod(getEquipPowerControlMethod())
               .addMethod(getEquipStatusMethod())
               .build();

@@ -7,7 +7,7 @@ import java.net.Socket;
 
 public class SoilEnvironmentSimulator {
     public static void main(String[] args) {
-        final Data data = new Data(20, 50);
+        final Data data = new Data(20, 10);
 
         Thread sensor = new Thread(new Sensor(data));
         Thread soilSim = new Thread(new SoilSim(data));
@@ -100,7 +100,7 @@ public class SoilEnvironmentSimulator {
                 soilData.setModifying(false);
 
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -156,7 +156,7 @@ public class SoilEnvironmentSimulator {
 
                 while (true) {
                     Socket clientSocket = serverSocket.accept();
-//                    System.out.println("------\nEquip - Client socket connected!");
+                    System.out.println("Sim: Equip connect successful!");
 
                     ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
 
