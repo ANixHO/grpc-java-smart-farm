@@ -18,15 +18,15 @@ public class EquipServer {
         equipControl.start();
 
         EquipServer equipServer = new EquipServer();
-        equipServer.start(equipPower, equipControl);
+        equipServer.start(equipPower);
         equipServer.blockUntilShutdown();
 
     }
 
-    private void start(EquipPower equipPower, Thread equipController) throws IOException {
+    private void start(EquipPower equipPower) throws IOException {
         int port = 50061;
         server = ServerBuilder.forPort(port)
-                .addService(new EquipServerImpl(equipPower, equipController))
+                .addService(new EquipServerImpl(equipPower))
                 .build()
                 .start();
         System.out.println("Equip Server started, listening on " + port);
@@ -44,57 +44,41 @@ public class EquipServer {
 
 
     static class EquipServerImpl extends EquipControlServiceGrpc.EquipControlServiceImplBase {
-        private EquipPower equipPower;
-        private Thread equipController;
+        private final EquipPower equipPower;
 
-        public EquipServerImpl(EquipPower equipPower, Thread equipController) {
+        public EquipServerImpl(EquipPower equipPower) {
             super();
             this.equipPower = equipPower;
-            this.equipController = equipController;
         }
 
-        public StreamObserver<EquipControlServiceProto.EquipPowerReq> equipPowerControl(StreamObserver<EquipControlServiceProto.EquipPowerRes> resObserver) {
-            return new StreamObserver<EquipControlServiceProto.EquipPowerReq>() {
-                @Override
-                public void onNext(EquipControlServiceProto.EquipPowerReq equipPowerReq) {
-                    String equipName = equipPowerReq.getEquipName();
-                    if (equipName.equals("heater")) {
-                        equipPower.changeHeaterPower();
+        public void equipPowerControl(EquipControlServiceProto.EquipPowerReq equipPowerReq, StreamObserver<EquipControlServiceProto.EquipPowerRes> resObserver) {
 
-                    }
-                    if (equipName.equals("sprinkler")) {
-                        equipPower.changeSprinklerPower();
-                    }
+            String equipName = equipPowerReq.getEquipName();
+            if (equipName.equals("heater")) {
+                equipPower.changeHeaterPower();
 
-                }
+            }
+            if (equipName.equals("sprinkler")) {
+                equipPower.changeSprinklerPower();
+            }
 
-                @Override
-                public void onError(Throwable throwable) {
-                    System.err.println("Error in client information streaming: " + throwable.getMessage());
-                }
-
-                @Override
-                public void onCompleted() {
-                    System.out.println("Equip power request streaming completed.");
-
-                    EquipControlServiceProto.EquipPowerRes res = EquipControlServiceProto.EquipPowerRes
-                            .newBuilder()
-                            .setEquipPowerStatus(
-                                    "Heater is " + equipPower.statusCodeToString(equipPower.getHeaterPower()) +
+            EquipControlServiceProto.EquipPowerRes res = EquipControlServiceProto.EquipPowerRes
+                    .newBuilder()
+                    .setEquipPowerStatus(
+                            "Heater is " + equipPower.statusCodeToString(equipPower.getHeaterPower()) +
                                     " ; Sprinkler is " + equipPower.statusCodeToString((equipPower.getSprinklerPower())))
-                            .build();
+                    .build();
 
-                    resObserver.onNext(res);
-                    resObserver.onCompleted();
-                }
-            };
+            resObserver.onNext(res);
+            resObserver.onCompleted();
         }
 
-        public void equipStatus(EquipControlServiceProto.EquipStatusReq req, StreamObserver<EquipControlServiceProto.EquipStatusRes> resObserver){
+
+        public void equipStatus(EquipControlServiceProto.EquipStatusReq req, StreamObserver<EquipControlServiceProto.EquipStatusRes> resObserver) {
             String resEquipName = req.getEquipStatusRequest();
             int resEquipStatusCode = -1;
 
-            if (resEquipName.equals("heater")){
+            if (resEquipName.equals("heater")) {
                 resEquipStatusCode = equipPower.getHeaterPower();
             }
 
@@ -113,8 +97,6 @@ public class EquipServer {
 
         }
     }
-
-
 }
 
 class EquipPower {
@@ -129,6 +111,7 @@ class EquipPower {
     public int getHeaterPower() {
         return heaterPower;
     }
+
     public int getSprinklerPower() {
         return sprinklerPower;
     }
@@ -151,18 +134,18 @@ class EquipPower {
         System.out.println("change sprinkler power status: " + sprinklerPower);
     }
 
-    public String statusCodeToString(int statusCode){
-        if(statusCode == 0){
+    public String statusCodeToString(int statusCode) {
+        if (statusCode == 0) {
             return "off";
-        }else{
+        } else {
             return "on";
         }
     }
 }
 
 class EquipController implements Runnable {
-    private EquipPower equipPower;
-    private SoilEnvirenmentSimulatorConnector connector;
+    private final EquipPower equipPower;
+    private final SoilEnvirenmentSimulatorConnector connector;
 
     public EquipController(EquipPower equipPower) {
         this.equipPower = equipPower;

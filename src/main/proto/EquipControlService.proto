@@ -7,7 +7,7 @@ option java_package = "com.grpcproject.smartfarm.EquipControlService";
 option java_outer_classname = "EquipControlServiceProto";
 
 service EquipControlService{
-  rpc equipPowerControl(stream EquipPowerReq) returns (EquipPowerRes);
+  rpc equipPowerControl(EquipPowerReq) returns (EquipPowerRes);
   rpc equipStatus(EquipStatusReq) returns (stream EquipStatusRes);
 }
 

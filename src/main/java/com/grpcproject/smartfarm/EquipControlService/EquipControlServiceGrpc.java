@@ -22,7 +22,7 @@ public final class EquipControlServiceGrpc {
       fullMethodName = SERVICE_NAME + '/' + "equipPowerControl",
       requestType = com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerReq.class,
       responseType = com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerRes.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerReq,
       com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerRes> getEquipPowerControlMethod() {
     io.grpc.MethodDescriptor<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerReq, com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerRes> getEquipPowerControlMethod;
@@ -31,7 +31,7 @@ public final class EquipControlServiceGrpc {
         if ((getEquipPowerControlMethod = EquipControlServiceGrpc.getEquipPowerControlMethod) == null) {
           EquipControlServiceGrpc.getEquipPowerControlMethod = getEquipPowerControlMethod =
               io.grpc.MethodDescriptor.<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerReq, com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerRes>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "equipPowerControl"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
@@ -127,9 +127,9 @@ public final class EquipControlServiceGrpc {
 
     /**
      */
-    default io.grpc.stub.StreamObserver<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerReq> equipPowerControl(
+    default void equipPowerControl(com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerReq request,
         io.grpc.stub.StreamObserver<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerRes> responseObserver) {
-      return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getEquipPowerControlMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getEquipPowerControlMethod(), responseObserver);
     }
 
     /**
@@ -169,10 +169,10 @@ public final class EquipControlServiceGrpc {
 
     /**
      */
-    public io.grpc.stub.StreamObserver<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerReq> equipPowerControl(
+    public void equipPowerControl(com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerReq request,
         io.grpc.stub.StreamObserver<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerRes> responseObserver) {
-      return io.grpc.stub.ClientCalls.asyncClientStreamingCall(
-          getChannel().newCall(getEquipPowerControlMethod(), getCallOptions()), responseObserver);
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getEquipPowerControlMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -202,6 +202,13 @@ public final class EquipControlServiceGrpc {
 
     /**
      */
+    public com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerRes equipPowerControl(com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerReq request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getEquipPowerControlMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
     public java.util.Iterator<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes> equipStatus(
         com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusReq request) {
       return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
@@ -224,10 +231,18 @@ public final class EquipControlServiceGrpc {
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new EquipControlServiceFutureStub(channel, callOptions);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerRes> equipPowerControl(
+        com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerReq request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getEquipPowerControlMethod(), getCallOptions()), request);
+    }
   }
 
-  private static final int METHODID_EQUIP_STATUS = 0;
-  private static final int METHODID_EQUIP_POWER_CONTROL = 1;
+  private static final int METHODID_EQUIP_POWER_CONTROL = 0;
+  private static final int METHODID_EQUIP_STATUS = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -246,6 +261,10 @@ public final class EquipControlServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_EQUIP_POWER_CONTROL:
+          serviceImpl.equipPowerControl((com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerReq) request,
+              (io.grpc.stub.StreamObserver<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerRes>) responseObserver);
+          break;
         case METHODID_EQUIP_STATUS:
           serviceImpl.equipStatus((com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusReq) request,
               (io.grpc.stub.StreamObserver<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes>) responseObserver);
@@ -260,9 +279,6 @@ public final class EquipControlServiceGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_EQUIP_POWER_CONTROL:
-          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.equipPowerControl(
-              (io.grpc.stub.StreamObserver<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerRes>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -273,7 +289,7 @@ public final class EquipControlServiceGrpc {
     return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
         .addMethod(
           getEquipPowerControlMethod(),
-          io.grpc.stub.ServerCalls.asyncClientStreamingCall(
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerReq,
               com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerRes>(

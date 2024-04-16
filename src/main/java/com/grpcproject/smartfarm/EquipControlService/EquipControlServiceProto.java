@@ -1197,7 +1197,7 @@ public final class EquipControlServiceProto {
 
     /**
      * <pre>
-     * unary request,
+     * unary request, send the equip name that want to check status
      * </pre>
      *
      * <code>string equipStatusRequest = 1;</code>
@@ -1206,7 +1206,7 @@ public final class EquipControlServiceProto {
     java.lang.String getEquipStatusRequest();
     /**
      * <pre>
-     * unary request,
+     * unary request, send the equip name that want to check status
      * </pre>
      *
      * <code>string equipStatusRequest = 1;</code>
@@ -1256,7 +1256,7 @@ public final class EquipControlServiceProto {
     private volatile java.lang.Object equipStatusRequest_ = "";
     /**
      * <pre>
-     * unary request,
+     * unary request, send the equip name that want to check status
      * </pre>
      *
      * <code>string equipStatusRequest = 1;</code>
@@ -1277,7 +1277,7 @@ public final class EquipControlServiceProto {
     }
     /**
      * <pre>
-     * unary request,
+     * unary request, send the equip name that want to check status
      * </pre>
      *
      * <code>string equipStatusRequest = 1;</code>
@@ -1627,7 +1627,7 @@ public final class EquipControlServiceProto {
       private java.lang.Object equipStatusRequest_ = "";
       /**
        * <pre>
-       * unary request,
+       * unary request, send the equip name that want to check status
        * </pre>
        *
        * <code>string equipStatusRequest = 1;</code>
@@ -1647,7 +1647,7 @@ public final class EquipControlServiceProto {
       }
       /**
        * <pre>
-       * unary request,
+       * unary request, send the equip name that want to check status
        * </pre>
        *
        * <code>string equipStatusRequest = 1;</code>
@@ -1668,7 +1668,7 @@ public final class EquipControlServiceProto {
       }
       /**
        * <pre>
-       * unary request,
+       * unary request, send the equip name that want to check status
        * </pre>
        *
        * <code>string equipStatusRequest = 1;</code>
@@ -1685,7 +1685,7 @@ public final class EquipControlServiceProto {
       }
       /**
        * <pre>
-       * unary request,
+       * unary request, send the equip name that want to check status
        * </pre>
        *
        * <code>string equipStatusRequest = 1;</code>
@@ -1699,7 +1699,7 @@ public final class EquipControlServiceProto {
       }
       /**
        * <pre>
-       * unary request,
+       * unary request, send the equip name that want to check status
        * </pre>
        *
        * <code>string equipStatusRequest = 1;</code>
@@ -2474,14 +2474,14 @@ public final class EquipControlServiceProto {
       "rStatus\030\001 \001(\t\",\n\016EquipStatusReq\022\032\n\022equip" +
       "StatusRequest\030\001 \001(\t\"<\n\016EquipStatusRes\022\021\n" +
       "\tequipName\030\001 \001(\t\022\027\n\017equipStatusCode\030\002 \001(" +
-      "\0052\347\001\n\023EquipControlService\022i\n\021equipPowerC" +
+      "\0052\345\001\n\023EquipControlService\022g\n\021equipPowerC" +
       "ontrol\022(.com.grpcproject.smartfarm.Equip" +
       "PowerReq\032(.com.grpcproject.smartfarm.Equ" +
-      "ipPowerRes(\001\022e\n\013equipStatus\022).com.grpcpr" +
-      "oject.smartfarm.EquipStatusReq\032).com.grp" +
-      "cproject.smartfarm.EquipStatusRes0\001BK\n-c" +
-      "om.grpcproject.smartfarm.EquipControlSer" +
-      "viceB\030EquipControlServiceProtoP\000b\006proto3"
+      "ipPowerRes\022e\n\013equipStatus\022).com.grpcproj" +
+      "ect.smartfarm.EquipStatusReq\032).com.grpcp" +
+      "roject.smartfarm.EquipStatusRes0\001BK\n-com" +
+      ".grpcproject.smartfarm.EquipControlServi" +
+      "ceB\030EquipControlServiceProtoP\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
