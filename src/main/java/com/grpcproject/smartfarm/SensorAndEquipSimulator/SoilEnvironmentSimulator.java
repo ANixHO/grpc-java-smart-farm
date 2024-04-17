@@ -7,7 +7,7 @@ import java.net.Socket;
 
 public class SoilEnvironmentSimulator {
     public static void main(String[] args) {
-        final Data data = new Data(20, 10);
+        final Data data = new Data(20, 50);
 
         Thread sensor = new Thread(new Sensor(data));
         Thread soilSim = new Thread(new SoilSim(data));
@@ -29,22 +29,20 @@ public class SoilEnvironmentSimulator {
             this.humidity = defaultHumidity;
         }
 
-        public synchronized int getTemp() {
+        public int getTemp() {
             return temp;
         }
 
-        public synchronized void tempUp(int val) {
+        public void tempUp(int val) {
             temp += val;
         }
 
-        public synchronized int getHumidity() {
+        public  int getHumidity() {
             return humidity;
         }
 
-        public synchronized void humidityUp(int val) {
-            if(humidity == 0) {
-
-            } else if ((humidity + val) < 0) {
+        public  void humidityUp(int val) {
+            if ((humidity + val) < 0) {
                 humidity = 0 ;
             } else if ((humidity + val) >= 100) {
                 humidity = 100;
@@ -114,10 +112,7 @@ public class SoilEnvironmentSimulator {
 
             if((tempChangeCount % 2) == 0) {
 
-                int airTempMax = 25;
-                int airTempMin = 10;
-
-                if (airTempCur >= 25) {
+                if (airTempCur >= 50) {
                     airTempUpVal = -1;
                 } else if (airTempCur <= 10) {
                     airTempUpVal = 1;
