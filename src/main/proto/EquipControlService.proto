@@ -8,7 +8,7 @@ option java_outer_classname = "EquipControlServiceProto";
 
 service EquipControlService{
   rpc equipPowerControl(EquipPowerReq) returns (EquipPowerRes);
-  rpc equipStatus(EquipStatusReq) returns (stream EquipStatusRes);
+  rpc equipStatus(EquipStatusReq) returns (EquipStatusRes);
 }
 
 message EquipPowerReq{
@@ -24,6 +24,6 @@ message EquipStatusReq{
 }
 
 message EquipStatusRes{
-  string equipName = 1; // response equip name and its status, 1 is power on and 0 is power off
-  int32 equipStatusCode = 2;
+  int32 equipStatusCode = 1;// response equip status, 1 is power on and 0 is power off
+
 }

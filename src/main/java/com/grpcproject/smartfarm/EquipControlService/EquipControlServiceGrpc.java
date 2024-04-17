@@ -53,7 +53,7 @@ public final class EquipControlServiceGrpc {
       fullMethodName = SERVICE_NAME + '/' + "equipStatus",
       requestType = com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusReq.class,
       responseType = com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusReq,
       com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes> getEquipStatusMethod() {
     io.grpc.MethodDescriptor<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusReq, com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes> getEquipStatusMethod;
@@ -62,7 +62,7 @@ public final class EquipControlServiceGrpc {
         if ((getEquipStatusMethod = EquipControlServiceGrpc.getEquipStatusMethod) == null) {
           EquipControlServiceGrpc.getEquipStatusMethod = getEquipStatusMethod =
               io.grpc.MethodDescriptor.<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusReq, com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "equipStatus"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
@@ -179,7 +179,7 @@ public final class EquipControlServiceGrpc {
      */
     public void equipStatus(com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusReq request,
         io.grpc.stub.StreamObserver<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getEquipStatusMethod(), getCallOptions()), request, responseObserver);
     }
   }
@@ -209,9 +209,8 @@ public final class EquipControlServiceGrpc {
 
     /**
      */
-    public java.util.Iterator<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes> equipStatus(
-        com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusReq request) {
-      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
+    public com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes equipStatus(com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusReq request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getEquipStatusMethod(), getCallOptions(), request);
     }
   }
@@ -238,6 +237,14 @@ public final class EquipControlServiceGrpc {
         com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipPowerReq request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getEquipPowerControlMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes> equipStatus(
+        com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusReq request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getEquipStatusMethod(), getCallOptions()), request);
     }
   }
 
@@ -296,7 +303,7 @@ public final class EquipControlServiceGrpc {
                 service, METHODID_EQUIP_POWER_CONTROL)))
         .addMethod(
           getEquipStatusMethod(),
-          io.grpc.stub.ServerCalls.asyncServerStreamingCall(
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusReq,
               com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes>(

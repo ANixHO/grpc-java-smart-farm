@@ -88,7 +88,6 @@ public class EquipServer {
 
             EquipControlServiceProto.EquipStatusRes res = EquipControlServiceProto.EquipStatusRes
                     .newBuilder()
-                    .setEquipName(resEquipName)
                     .setEquipStatusCode(resEquipStatusCode)
                     .build();
 
@@ -156,22 +155,24 @@ class EquipController implements Runnable {
     public void run() {
         System.out.println("Thread: equip controller starts running! ");
         while (true) {
-            try {
-                if ((equipPower.getSprinklerPower() + equipPower.getHeaterPower()) > 0) {
-                    adjustTempAndHumidity();
-                    System.out.println("Equip is running! ");
+            System.out.print("");
+
+            if ((equipPower.getSprinklerPower() + equipPower.getHeaterPower()) > 0) {
+                String adjustResult = adjustTempAndHumidity();
+                System.out.println(adjustResult);
+
+                try {
                     Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
                 }
-
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
             }
-
         }
+
     }
 
 
-    public synchronized String adjustTempAndHumidity() {
+    public String adjustTempAndHumidity() {
         int tempUpVal = 0;
         int humidityUpVal = 0;
 

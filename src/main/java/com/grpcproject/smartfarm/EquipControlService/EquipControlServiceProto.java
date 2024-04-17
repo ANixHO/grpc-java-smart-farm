@@ -1785,26 +1785,10 @@ public final class EquipControlServiceProto {
 
     /**
      * <pre>
-     * response equip name and its status, 1 is power on and 0 is power off
+     * response equip status, 1 is power on and 0 is power off
      * </pre>
      *
-     * <code>string equipName = 1;</code>
-     * @return The equipName.
-     */
-    java.lang.String getEquipName();
-    /**
-     * <pre>
-     * response equip name and its status, 1 is power on and 0 is power off
-     * </pre>
-     *
-     * <code>string equipName = 1;</code>
-     * @return The bytes for equipName.
-     */
-    com.google.protobuf.ByteString
-        getEquipNameBytes();
-
-    /**
-     * <code>int32 equipStatusCode = 2;</code>
+     * <code>int32 equipStatusCode = 1;</code>
      * @return The equipStatusCode.
      */
     int getEquipStatusCode();
@@ -1822,7 +1806,6 @@ public final class EquipControlServiceProto {
       super(builder);
     }
     private EquipStatusRes() {
-      equipName_ = "";
     }
 
     @java.lang.Override
@@ -1845,57 +1828,14 @@ public final class EquipControlServiceProto {
               com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes.class, com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes.Builder.class);
     }
 
-    public static final int EQUIPNAME_FIELD_NUMBER = 1;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object equipName_ = "";
-    /**
-     * <pre>
-     * response equip name and its status, 1 is power on and 0 is power off
-     * </pre>
-     *
-     * <code>string equipName = 1;</code>
-     * @return The equipName.
-     */
-    @java.lang.Override
-    public java.lang.String getEquipName() {
-      java.lang.Object ref = equipName_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        equipName_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * response equip name and its status, 1 is power on and 0 is power off
-     * </pre>
-     *
-     * <code>string equipName = 1;</code>
-     * @return The bytes for equipName.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getEquipNameBytes() {
-      java.lang.Object ref = equipName_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        equipName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int EQUIPSTATUSCODE_FIELD_NUMBER = 2;
+    public static final int EQUIPSTATUSCODE_FIELD_NUMBER = 1;
     private int equipStatusCode_ = 0;
     /**
-     * <code>int32 equipStatusCode = 2;</code>
+     * <pre>
+     * response equip status, 1 is power on and 0 is power off
+     * </pre>
+     *
+     * <code>int32 equipStatusCode = 1;</code>
      * @return The equipStatusCode.
      */
     @java.lang.Override
@@ -1917,11 +1857,8 @@ public final class EquipControlServiceProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(equipName_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, equipName_);
-      }
       if (equipStatusCode_ != 0) {
-        output.writeInt32(2, equipStatusCode_);
+        output.writeInt32(1, equipStatusCode_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1932,12 +1869,9 @@ public final class EquipControlServiceProto {
       if (size != -1) return size;
 
       size = 0;
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(equipName_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, equipName_);
-      }
       if (equipStatusCode_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, equipStatusCode_);
+          .computeInt32Size(1, equipStatusCode_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -1954,8 +1888,6 @@ public final class EquipControlServiceProto {
       }
       com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes other = (com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes) obj;
 
-      if (!getEquipName()
-          .equals(other.getEquipName())) return false;
       if (getEquipStatusCode()
           != other.getEquipStatusCode()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -1969,8 +1901,6 @@ public final class EquipControlServiceProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + EQUIPNAME_FIELD_NUMBER;
-      hash = (53 * hash) + getEquipName().hashCode();
       hash = (37 * hash) + EQUIPSTATUSCODE_FIELD_NUMBER;
       hash = (53 * hash) + getEquipStatusCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
@@ -2104,7 +2034,6 @@ public final class EquipControlServiceProto {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
-        equipName_ = "";
         equipStatusCode_ = 0;
         return this;
       }
@@ -2140,9 +2069,6 @@ public final class EquipControlServiceProto {
       private void buildPartial0(com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes result) {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.equipName_ = equipName_;
-        }
-        if (((from_bitField0_ & 0x00000002) != 0)) {
           result.equipStatusCode_ = equipStatusCode_;
         }
       }
@@ -2191,11 +2117,6 @@ public final class EquipControlServiceProto {
 
       public Builder mergeFrom(com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes other) {
         if (other == com.grpcproject.smartfarm.EquipControlService.EquipControlServiceProto.EquipStatusRes.getDefaultInstance()) return this;
-        if (!other.getEquipName().isEmpty()) {
-          equipName_ = other.equipName_;
-          bitField0_ |= 0x00000001;
-          onChanged();
-        }
         if (other.getEquipStatusCode() != 0) {
           setEquipStatusCode(other.getEquipStatusCode());
         }
@@ -2225,16 +2146,11 @@ public final class EquipControlServiceProto {
               case 0:
                 done = true;
                 break;
-              case 10: {
-                equipName_ = input.readStringRequireUtf8();
+              case 8: {
+                equipStatusCode_ = input.readInt32();
                 bitField0_ |= 0x00000001;
                 break;
-              } // case 10
-              case 16: {
-                equipStatusCode_ = input.readInt32();
-                bitField0_ |= 0x00000002;
-                break;
-              } // case 16
+              } // case 8
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -2252,101 +2168,13 @@ public final class EquipControlServiceProto {
       }
       private int bitField0_;
 
-      private java.lang.Object equipName_ = "";
-      /**
-       * <pre>
-       * response equip name and its status, 1 is power on and 0 is power off
-       * </pre>
-       *
-       * <code>string equipName = 1;</code>
-       * @return The equipName.
-       */
-      public java.lang.String getEquipName() {
-        java.lang.Object ref = equipName_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          equipName_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * response equip name and its status, 1 is power on and 0 is power off
-       * </pre>
-       *
-       * <code>string equipName = 1;</code>
-       * @return The bytes for equipName.
-       */
-      public com.google.protobuf.ByteString
-          getEquipNameBytes() {
-        java.lang.Object ref = equipName_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          equipName_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * response equip name and its status, 1 is power on and 0 is power off
-       * </pre>
-       *
-       * <code>string equipName = 1;</code>
-       * @param value The equipName to set.
-       * @return This builder for chaining.
-       */
-      public Builder setEquipName(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        equipName_ = value;
-        bitField0_ |= 0x00000001;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * response equip name and its status, 1 is power on and 0 is power off
-       * </pre>
-       *
-       * <code>string equipName = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearEquipName() {
-        equipName_ = getDefaultInstance().getEquipName();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * response equip name and its status, 1 is power on and 0 is power off
-       * </pre>
-       *
-       * <code>string equipName = 1;</code>
-       * @param value The bytes for equipName to set.
-       * @return This builder for chaining.
-       */
-      public Builder setEquipNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        equipName_ = value;
-        bitField0_ |= 0x00000001;
-        onChanged();
-        return this;
-      }
-
       private int equipStatusCode_ ;
       /**
-       * <code>int32 equipStatusCode = 2;</code>
+       * <pre>
+       * response equip status, 1 is power on and 0 is power off
+       * </pre>
+       *
+       * <code>int32 equipStatusCode = 1;</code>
        * @return The equipStatusCode.
        */
       @java.lang.Override
@@ -2354,23 +2182,31 @@ public final class EquipControlServiceProto {
         return equipStatusCode_;
       }
       /**
-       * <code>int32 equipStatusCode = 2;</code>
+       * <pre>
+       * response equip status, 1 is power on and 0 is power off
+       * </pre>
+       *
+       * <code>int32 equipStatusCode = 1;</code>
        * @param value The equipStatusCode to set.
        * @return This builder for chaining.
        */
       public Builder setEquipStatusCode(int value) {
 
         equipStatusCode_ = value;
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 equipStatusCode = 2;</code>
+       * <pre>
+       * response equip status, 1 is power on and 0 is power off
+       * </pre>
+       *
+       * <code>int32 equipStatusCode = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearEquipStatusCode() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000001);
         equipStatusCode_ = 0;
         onChanged();
         return this;
@@ -2472,16 +2308,16 @@ public final class EquipControlServiceProto {
       "ject.smartfarm\"\"\n\rEquipPowerReq\022\021\n\tequip" +
       "Name\030\001 \001(\t\")\n\rEquipPowerRes\022\030\n\020equipPowe" +
       "rStatus\030\001 \001(\t\",\n\016EquipStatusReq\022\032\n\022equip" +
-      "StatusRequest\030\001 \001(\t\"<\n\016EquipStatusRes\022\021\n" +
-      "\tequipName\030\001 \001(\t\022\027\n\017equipStatusCode\030\002 \001(" +
-      "\0052\345\001\n\023EquipControlService\022g\n\021equipPowerC" +
-      "ontrol\022(.com.grpcproject.smartfarm.Equip" +
-      "PowerReq\032(.com.grpcproject.smartfarm.Equ" +
-      "ipPowerRes\022e\n\013equipStatus\022).com.grpcproj" +
-      "ect.smartfarm.EquipStatusReq\032).com.grpcp" +
-      "roject.smartfarm.EquipStatusRes0\001BK\n-com" +
-      ".grpcproject.smartfarm.EquipControlServi" +
-      "ceB\030EquipControlServiceProtoP\000b\006proto3"
+      "StatusRequest\030\001 \001(\t\")\n\016EquipStatusRes\022\027\n" +
+      "\017equipStatusCode\030\001 \001(\0052\343\001\n\023EquipControlS" +
+      "ervice\022g\n\021equipPowerControl\022(.com.grpcpr" +
+      "oject.smartfarm.EquipPowerReq\032(.com.grpc" +
+      "project.smartfarm.EquipPowerRes\022c\n\013equip" +
+      "Status\022).com.grpcproject.smartfarm.Equip" +
+      "StatusReq\032).com.grpcproject.smartfarm.Eq" +
+      "uipStatusResBK\n-com.grpcproject.smartfar" +
+      "m.EquipControlServiceB\030EquipControlServi" +
+      "ceProtoP\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -2510,7 +2346,7 @@ public final class EquipControlServiceProto {
     internal_static_com_grpcproject_smartfarm_EquipStatusRes_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_grpcproject_smartfarm_EquipStatusRes_descriptor,
-        new java.lang.String[] { "EquipName", "EquipStatusCode", });
+        new java.lang.String[] { "EquipStatusCode", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
