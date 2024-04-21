@@ -563,8 +563,8 @@ public final class SensorDataCollectServiceProto {
 
   }
 
-  public interface saveSensorDataResOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:com.grpcproject.smartfarm.saveSensorDataRes)
+  public interface SaveSensorDataResOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.grpcproject.smartfarm.SaveSensorDataRes)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -580,18 +580,18 @@ public final class SensorDataCollectServiceProto {
         getResponseBytes();
   }
   /**
-   * Protobuf type {@code com.grpcproject.smartfarm.saveSensorDataRes}
+   * Protobuf type {@code com.grpcproject.smartfarm.SaveSensorDataRes}
    */
-  public static final class saveSensorDataRes extends
+  public static final class SaveSensorDataRes extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:com.grpcproject.smartfarm.saveSensorDataRes)
-      saveSensorDataResOrBuilder {
+      // @@protoc_insertion_point(message_implements:com.grpcproject.smartfarm.SaveSensorDataRes)
+      SaveSensorDataResOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use saveSensorDataRes.newBuilder() to construct.
-    private saveSensorDataRes(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use SaveSensorDataRes.newBuilder() to construct.
+    private SaveSensorDataRes(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private saveSensorDataRes() {
+    private SaveSensorDataRes() {
       response_ = "";
     }
 
@@ -599,20 +599,20 @@ public final class SensorDataCollectServiceProto {
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new saveSensorDataRes();
+      return new SaveSensorDataRes();
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.internal_static_com_grpcproject_smartfarm_saveSensorDataRes_descriptor;
+      return com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.internal_static_com_grpcproject_smartfarm_SaveSensorDataRes_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.internal_static_com_grpcproject_smartfarm_saveSensorDataRes_fieldAccessorTable
+      return com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.internal_static_com_grpcproject_smartfarm_SaveSensorDataRes_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes.class, com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes.Builder.class);
+              com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes.class, com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes.Builder.class);
     }
 
     public static final int RESPONSE_FIELD_NUMBER = 1;
@@ -693,10 +693,10 @@ public final class SensorDataCollectServiceProto {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes)) {
+      if (!(obj instanceof com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes)) {
         return super.equals(obj);
       }
-      com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes other = (com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes) obj;
+      com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes other = (com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes) obj;
 
       if (!getResponse()
           .equals(other.getResponse())) return false;
@@ -718,44 +718,44 @@ public final class SensorDataCollectServiceProto {
       return hash;
     }
 
-    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes parseFrom(
+    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes parseFrom(
+    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes parseFrom(
+    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes parseFrom(
+    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes parseFrom(byte[] data)
+    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes parseFrom(
+    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes parseFrom(java.io.InputStream input)
+    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes parseFrom(
+    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -763,26 +763,26 @@ public final class SensorDataCollectServiceProto {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes parseDelimitedFrom(java.io.InputStream input)
+    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
 
-    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes parseDelimitedFrom(
+    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes parseFrom(
+    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes parseFrom(
+    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -795,7 +795,7 @@ public final class SensorDataCollectServiceProto {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes prototype) {
+    public static Builder newBuilder(com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -811,26 +811,26 @@ public final class SensorDataCollectServiceProto {
       return builder;
     }
     /**
-     * Protobuf type {@code com.grpcproject.smartfarm.saveSensorDataRes}
+     * Protobuf type {@code com.grpcproject.smartfarm.SaveSensorDataRes}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:com.grpcproject.smartfarm.saveSensorDataRes)
-        com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataResOrBuilder {
+        // @@protoc_insertion_point(builder_implements:com.grpcproject.smartfarm.SaveSensorDataRes)
+        com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataResOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.internal_static_com_grpcproject_smartfarm_saveSensorDataRes_descriptor;
+        return com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.internal_static_com_grpcproject_smartfarm_SaveSensorDataRes_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.internal_static_com_grpcproject_smartfarm_saveSensorDataRes_fieldAccessorTable
+        return com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.internal_static_com_grpcproject_smartfarm_SaveSensorDataRes_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes.class, com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes.Builder.class);
+                com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes.class, com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes.Builder.class);
       }
 
-      // Construct using com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes.newBuilder()
+      // Construct using com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes.newBuilder()
       private Builder() {
 
       }
@@ -851,17 +851,17 @@ public final class SensorDataCollectServiceProto {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.internal_static_com_grpcproject_smartfarm_saveSensorDataRes_descriptor;
+        return com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.internal_static_com_grpcproject_smartfarm_SaveSensorDataRes_descriptor;
       }
 
       @java.lang.Override
-      public com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes getDefaultInstanceForType() {
-        return com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes.getDefaultInstance();
+      public com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes getDefaultInstanceForType() {
+        return com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes build() {
-        com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes result = buildPartial();
+      public com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes build() {
+        com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -869,14 +869,14 @@ public final class SensorDataCollectServiceProto {
       }
 
       @java.lang.Override
-      public com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes buildPartial() {
-        com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes result = new com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes(this);
+      public com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes buildPartial() {
+        com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes result = new com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes(this);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      private void buildPartial0(com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes result) {
+      private void buildPartial0(com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes result) {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.response_ = response_;
@@ -917,16 +917,16 @@ public final class SensorDataCollectServiceProto {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes) {
-          return mergeFrom((com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes)other);
+        if (other instanceof com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes) {
+          return mergeFrom((com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes other) {
-        if (other == com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes other) {
+        if (other == com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes.getDefaultInstance()) return this;
         if (!other.getResponse().isEmpty()) {
           response_ = other.response_;
           bitField0_ |= 0x00000001;
@@ -1064,23 +1064,23 @@ public final class SensorDataCollectServiceProto {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:com.grpcproject.smartfarm.saveSensorDataRes)
+      // @@protoc_insertion_point(builder_scope:com.grpcproject.smartfarm.SaveSensorDataRes)
     }
 
-    // @@protoc_insertion_point(class_scope:com.grpcproject.smartfarm.saveSensorDataRes)
-    private static final com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:com.grpcproject.smartfarm.SaveSensorDataRes)
+    private static final com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes();
+      DEFAULT_INSTANCE = new com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes();
     }
 
-    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes getDefaultInstance() {
+    public static com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<saveSensorDataRes>
-        PARSER = new com.google.protobuf.AbstractParser<saveSensorDataRes>() {
+    private static final com.google.protobuf.Parser<SaveSensorDataRes>
+        PARSER = new com.google.protobuf.AbstractParser<SaveSensorDataRes>() {
       @java.lang.Override
-      public saveSensorDataRes parsePartialFrom(
+      public SaveSensorDataRes parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1099,17 +1099,17 @@ public final class SensorDataCollectServiceProto {
       }
     };
 
-    public static com.google.protobuf.Parser<saveSensorDataRes> parser() {
+    public static com.google.protobuf.Parser<SaveSensorDataRes> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<saveSensorDataRes> getParserForType() {
+    public com.google.protobuf.Parser<SaveSensorDataRes> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes getDefaultInstanceForType() {
+    public com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1121,10 +1121,10 @@ public final class SensorDataCollectServiceProto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_grpcproject_smartfarm_SaveSensorDataReq_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_com_grpcproject_smartfarm_saveSensorDataRes_descriptor;
+    internal_static_com_grpcproject_smartfarm_SaveSensorDataRes_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_com_grpcproject_smartfarm_saveSensorDataRes_fieldAccessorTable;
+      internal_static_com_grpcproject_smartfarm_SaveSensorDataRes_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1137,11 +1137,11 @@ public final class SensorDataCollectServiceProto {
       "\n\036SensorDataCollectService.proto\022\031com.gr" +
       "pcproject.smartfarm\";\n\021SaveSensorDataReq" +
       "\022\020\n\010soilTemp\030\001 \001(\005\022\024\n\014soilHumidity\030\002 \001(\005" +
-      "\"%\n\021saveSensorDataRes\022\020\n\010response\030\001 \001(\t2" +
+      "\"%\n\021SaveSensorDataRes\022\020\n\010response\030\001 \001(\t2" +
       "\212\001\n\030SensorDataCollectService\022n\n\016saveSens" +
       "orData\022,.com.grpcproject.smartfarm.SaveS" +
       "ensorDataReq\032,.com.grpcproject.smartfarm" +
-      ".saveSensorDataRes(\001BU\n2com.grpcproject." +
+      ".SaveSensorDataRes(\001BU\n2com.grpcproject." +
       "smartfarm.SensorDataCollectServiceB\035Sens" +
       "orDataCollectServiceProtoP\000b\006proto3"
     };
@@ -1155,11 +1155,11 @@ public final class SensorDataCollectServiceProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_grpcproject_smartfarm_SaveSensorDataReq_descriptor,
         new java.lang.String[] { "SoilTemp", "SoilHumidity", });
-    internal_static_com_grpcproject_smartfarm_saveSensorDataRes_descriptor =
+    internal_static_com_grpcproject_smartfarm_SaveSensorDataRes_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_com_grpcproject_smartfarm_saveSensorDataRes_fieldAccessorTable = new
+    internal_static_com_grpcproject_smartfarm_SaveSensorDataRes_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_com_grpcproject_smartfarm_saveSensorDataRes_descriptor,
+        internal_static_com_grpcproject_smartfarm_SaveSensorDataRes_descriptor,
         new java.lang.String[] { "Response", });
   }
 

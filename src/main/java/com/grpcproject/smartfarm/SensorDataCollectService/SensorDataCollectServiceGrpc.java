@@ -16,28 +16,28 @@ public final class SensorDataCollectServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataReq,
-      com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes> getSaveSensorDataMethod;
+      com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes> getSaveSensorDataMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "saveSensorData",
       requestType = com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataReq.class,
-      responseType = com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes.class,
+      responseType = com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes.class,
       methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
   public static io.grpc.MethodDescriptor<com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataReq,
-      com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes> getSaveSensorDataMethod() {
-    io.grpc.MethodDescriptor<com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataReq, com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes> getSaveSensorDataMethod;
+      com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes> getSaveSensorDataMethod() {
+    io.grpc.MethodDescriptor<com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataReq, com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes> getSaveSensorDataMethod;
     if ((getSaveSensorDataMethod = SensorDataCollectServiceGrpc.getSaveSensorDataMethod) == null) {
       synchronized (SensorDataCollectServiceGrpc.class) {
         if ((getSaveSensorDataMethod = SensorDataCollectServiceGrpc.getSaveSensorDataMethod) == null) {
           SensorDataCollectServiceGrpc.getSaveSensorDataMethod = getSaveSensorDataMethod =
-              io.grpc.MethodDescriptor.<com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataReq, com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes>newBuilder()
+              io.grpc.MethodDescriptor.<com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataReq, com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "saveSensorData"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes.getDefaultInstance()))
+                  com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes.getDefaultInstance()))
               .setSchemaDescriptor(new SensorDataCollectServiceMethodDescriptorSupplier("saveSensorData"))
               .build();
         }
@@ -97,7 +97,7 @@ public final class SensorDataCollectServiceGrpc {
     /**
      */
     default io.grpc.stub.StreamObserver<com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataReq> saveSensorData(
-        io.grpc.stub.StreamObserver<com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes> responseObserver) {
+        io.grpc.stub.StreamObserver<com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes> responseObserver) {
       return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getSaveSensorDataMethod(), responseObserver);
     }
   }
@@ -132,7 +132,7 @@ public final class SensorDataCollectServiceGrpc {
     /**
      */
     public io.grpc.stub.StreamObserver<com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataReq> saveSensorData(
-        io.grpc.stub.StreamObserver<com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes> responseObserver) {
+        io.grpc.stub.StreamObserver<com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes> responseObserver) {
       return io.grpc.stub.ClientCalls.asyncClientStreamingCall(
           getChannel().newCall(getSaveSensorDataMethod(), getCallOptions()), responseObserver);
     }
@@ -203,7 +203,7 @@ public final class SensorDataCollectServiceGrpc {
       switch (methodId) {
         case METHODID_SAVE_SENSOR_DATA:
           return (io.grpc.stub.StreamObserver<Req>) serviceImpl.saveSensorData(
-              (io.grpc.stub.StreamObserver<com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes>) responseObserver);
+              (io.grpc.stub.StreamObserver<com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -217,7 +217,7 @@ public final class SensorDataCollectServiceGrpc {
           io.grpc.stub.ServerCalls.asyncClientStreamingCall(
             new MethodHandlers<
               com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataReq,
-              com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.saveSensorDataRes>(
+              com.grpcproject.smartfarm.SensorDataCollectService.SensorDataCollectServiceProto.SaveSensorDataRes>(
                 service, METHODID_SAVE_SENSOR_DATA)))
         .build();
   }
