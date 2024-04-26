@@ -41,11 +41,9 @@ public class SensorServer {
 
             while (!sensorServerThread.isInterrupted()) {
                 try {
-                    Thread.sleep(1000);
-
-
                     data = simConnector.getTempAndHumidity();
                     saveSensorData(data[0], data[1]);
+                    Thread.sleep(1000);
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
