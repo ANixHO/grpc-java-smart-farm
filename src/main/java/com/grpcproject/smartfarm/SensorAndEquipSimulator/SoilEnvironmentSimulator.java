@@ -111,7 +111,7 @@ public class SoilEnvironmentSimulator {
                 // when air temp reach 10, then it will go up
                 if (airTempCur >= 50) {
                     airTempUpVal = -1;
-                } else if (airTempCur <= 10) {
+                } else if (airTempCur <= 0) {
                     airTempUpVal = 1;
                 }
 
