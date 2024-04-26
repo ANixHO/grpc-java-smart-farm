@@ -61,13 +61,18 @@ public class SmartControlServer {
     static final Object heaterThreadLock = new Object();
     static final Object sprinklerThreadLock = new Object();
 
+    /*
+        These two are equips running time when user runs equip
+    */
+    static long userRunningHeaterTime, userRunningSprinklerTime;
+
 
 
     public SmartControlServer() {
 
     }
 
-    public void start() throws IOException {
+    public void start() throws IOException, InterruptedException {
         int port = 50062;
 
         server = ServerBuilder.forPort(port)
@@ -85,6 +90,9 @@ public class SmartControlServer {
         // instant the automatic controller threads, then start the threads
         heaterSmartController = new HeaterSmartController();
         sprinklerSmartController = new SprinklerSmartController();
+
+        // wait 3 seconds to receive sensor server first
+        Thread.sleep(3000);
 
         heaterSmartController.start();
         sprinklerSmartController.start();
@@ -138,165 +146,95 @@ public class SmartControlServer {
              the following method will start run a new thread to run the equipment.
              In the meantime, the automatic controller thread will be paused.
          */
-        public StreamObserver<UserMonitorAndControlServiceProto.RunEquipReq> runEquipment(UserMonitorAndControlServiceProto.RunEquipReq req, StreamObserver<UserMonitorAndControlServiceProto.EquipRunningStatusRes> resObserver) {
-            return new StreamObserver<>() {
+        @Override
+        public StreamObserver<UserMonitorAndControlServiceProto.RunEquipReq> runEquipment(StreamObserver<UserMonitorAndControlServiceProto.EquipRunningStatusRes> resObserver) {
+            return new StreamObserver<UserMonitorAndControlServiceProto.RunEquipReq>() {
                 @Override
                 public void onNext(UserMonitorAndControlServiceProto.RunEquipReq req) {
                     String equipName = req.getEquipName();
                     long equipRuntime = req.getEquipRuntime();
-                    System.out.println("Received run equip request: run " + equipName + " for " + equipRuntime + " seconds");
 
-                    if (equipName.equals("heater"))
-                        userRunsHeater(equipRuntime, resObserver);
-                    else if (equipName.equals("sprinkler"))
-                        userRunsSprinkler(equipRuntime, resObserver);
+                    System.out.println("\nRun equip request: " + equipName + " for " + equipRuntime + " seconds\n");
 
+                    /*
+                        run heater or sprinkler depends on user request
+                     */
+                    if(equipName.equals("heater")){
+
+                        // make heater automation controller step into waiting status
+                        isUserRunningHeater = true;
+
+                        // initialise the real heater running time
+                        userRunningHeaterTime = 0L;
+
+                        // initialise the manual heater runner thread and start
+                        Thread userRunsHeater = new Thread(new UserRunsHeater(equipRuntime));
+                        userRunsHeater.start();
+
+                        // send heater running time every second till running time reach the target time
+                        while (userRunningHeaterTime <= equipRuntime) {
+                            UserMonitorAndControlServiceProto.EquipRunningStatusRes res = UserMonitorAndControlServiceProto.EquipRunningStatusRes
+                                    .newBuilder()
+                                    .setEquipName(equipName)
+                                    .setEquipRunningTime(userRunningHeaterTime)
+                                    .build();
+                            resObserver.onNext(res);
+
+                            System.out.println("\nUser control "+ equipName + " for " + userRunningHeaterTime + " seconds;\n");
+
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+
+
+                    } else if (equipName.equals("sprinkler")) {
+
+                        // make sprinkler automation controller step into wating status
+                        isUserRunningSprinkler = true;
+
+                        // initialise the real sprinkler running time
+                        userRunningSprinklerTime = 0L;
+
+                        // initialise the manual sprinkler runner thread and start
+                        Thread userRunsSprinkler = new Thread(new UserRunsSprinkler(equipRuntime));
+                        userRunsSprinkler.start();
+
+                        // send sprinkler running time every second till running time reach the target time
+                        while (userRunningSprinklerTime <= equipRuntime) {
+                            UserMonitorAndControlServiceProto.EquipRunningStatusRes res = UserMonitorAndControlServiceProto.EquipRunningStatusRes
+                                    .newBuilder()
+                                    .setEquipName(equipName)
+                                    .setEquipRunningTime(userRunningSprinklerTime)
+                                    .build();
+                            resObserver.onNext(res);
+
+                            System.out.println("\nUser control "+ equipName + " for " + userRunningSprinklerTime + " seconds;\n");
+
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }
+
+                    resObserver.onCompleted();
                 }
 
                 @Override
                 public void onError(Throwable throwable) {
-                    System.out.println("Error from request " + throwable.getMessage());
+                    System.out.println("Error from smart controller server: " + throwable.getMessage());
                 }
 
                 @Override
                 public void onCompleted() {
-                    System.out.println("Run equip request streaming completed");
-                    resObserver.onCompleted();
+
+                    System.out.println("\nServer response complete");
                 }
             };
-        }
-
-        private void userRunsHeater(
-                long equipRuntime,
-                StreamObserver<UserMonitorAndControlServiceProto.EquipRunningStatusRes> resObserver) {
-
-            Runnable equipRunner = () -> {
-                synchronized (heaterThreadLock) {
-                    try {
-
-                        // make 'heaterSmartController' pause(wait)
-                        isUserRunningHeater = true;
-
-                        // wait 5 seconds to let 'heaterSmartController' finish the remaining task
-                        // and step into waiting status
-                        Thread.sleep(5000);
-                        System.out.println("Heater starts running...");
-
-                        // turn the heater power on
-                        grpcEquipServerClient.heaterPower(1);
-
-                        long i = 0L;
-
-                        // send the equip runned time to user client every second until it reach the time that user setting
-                        while (i <= equipRuntime || !Thread.currentThread().isInterrupted()) {
-
-                            Thread.sleep(1000);
-                            i += grpcEquipServerClient.equipStatus("heater");
-
-                            UserMonitorAndControlServiceProto.EquipRunningStatusRes res = UserMonitorAndControlServiceProto.EquipRunningStatusRes
-                                    .newBuilder()
-                                    .setEquipName("heater")
-                                    .setEquipRunningTime(i)
-                                    .build();
-                            resObserver.onNext(res);
-
-                        }
-
-                        resObserver.onCompleted();
-
-                        //  make 'heaterSmartController' ready to run
-                        isUserRunningHeater = false;
-
-                        // make 'heaterSmartController' keep running
-                        heaterThreadLock.notifyAll();
-
-
-                    } catch (InterruptedException e) {
-                        resObserver.onError(e);
-
-                    } finally {
-
-                        // if this thread shut off by error,
-                        // then turn off the heater, and complete the grpc response to user client
-                        // then make 'heaterSmartController' keep running
-                        grpcEquipServerClient.heaterPower(0);
-
-                        System.out.println("Heater stops running");
-                        resObserver.onCompleted();
-                        isUserRunningHeater = false;
-                        heaterThreadLock.notifyAll();
-                    }
-                }
-            };
-
-            Thread equipRunnerThread = new Thread(equipRunner);
-            equipRunnerThread.start();
-        }
-
-        private void userRunsSprinkler(
-                long equipRuntime,
-                StreamObserver<UserMonitorAndControlServiceProto.EquipRunningStatusRes> resObserver) {
-
-            Runnable equipRunner = () -> {
-                synchronized (sprinklerThreadLock) {
-                    try {
-                        // make 'sprinklerSmartController' pause(wait)
-                        isUserRunningSprinkler = true;
-
-                        // wait 10 seconds to let 'sprinklerSmartController' finish the remaining task
-                        // and step into waiting status
-                        Thread.sleep(10000);
-                        System.out.println("Sprinkler starts running...");
-
-                        // turn the sprinkler power on
-                        grpcEquipServerClient.sprinklerPower(1);
-
-                        long i = 0L;
-
-                        // send the equip runned time to user client every second until it reach the time that user setting
-                        while (i <= equipRuntime || !Thread.currentThread().isInterrupted()) {
-
-                            Thread.sleep(1000);
-                            i += grpcEquipServerClient.equipStatus("sprinkler");
-
-                            UserMonitorAndControlServiceProto.EquipRunningStatusRes res = UserMonitorAndControlServiceProto.EquipRunningStatusRes
-                                    .newBuilder()
-                                    .setEquipName("sprinkler")
-                                    .setEquipRunningTime(i)
-                                    .build();
-                            resObserver.onNext(res);
-
-                        }
-
-                        resObserver.onCompleted();
-
-                        // make 'sprinklerSmartController' ready to run
-                        isUserRunningSprinkler = false;
-
-                        // make 'sprinklerSmartController' keep running
-                        sprinklerThreadLock.notifyAll();
-
-
-                    } catch (InterruptedException e) {
-                        resObserver.onError(e);
-
-                    } finally {
-
-                        // if this thread shut off by error,
-                        // then turn off the heater, and complete the grpc response to user client
-                        // then make 'heaterSmartController' keep running
-                        grpcEquipServerClient.sprinklerPower(0);
-
-                        System.out.println("Sprinkler stops running");
-                        resObserver.onCompleted();
-                        isUserRunningSprinkler = false;
-                        sprinklerThreadLock.notifyAll();
-                    }
-                }
-            };
-
-            Thread equipRunnerThread = new Thread(equipRunner);
-            equipRunnerThread.start();
         }
 
     }
@@ -308,6 +246,7 @@ public class SmartControlServer {
             return new StreamObserver<>() {
                 @Override
                 public void onNext(SensorDataCollectServiceProto.SaveSensorDataReq saveSensorDataReq) {
+
                     // receive temp and humidity data from sensor server
                     int temp = saveSensorDataReq.getSoilTemp();
                     int humidity = saveSensorDataReq.getSoilHumidity();
@@ -361,6 +300,7 @@ public class SmartControlServer {
 
                         if (isUserRunningHeater) {
                             grpcEquipServerClient.heaterPower(0);
+                            System.out.println("User turn the heater on manually, automatic controller stars waiting");
                             heaterThreadLock.wait();
                         }
 
@@ -411,6 +351,7 @@ public class SmartControlServer {
                          */
                         if (isUserRunningSprinkler) {
                             grpcEquipServerClient.sprinklerPower(0);
+                            System.out.println("User turn the sprinkler on manually, automatic controller stars waiting");
                             sprinklerThreadLock.wait();
                         }
 
@@ -438,6 +379,111 @@ public class SmartControlServer {
         }
     }
 
+    static class UserRunsHeater implements Runnable {
+        long heaterRunTime;
+        public UserRunsHeater(long heaterRunTime) {
+            this.heaterRunTime = heaterRunTime;
+        }
+
+        @Override
+        public void run() {
+            synchronized (heaterThreadLock) {
+                try {
+                    System.out.println("Heater starts running base on user request...");
+
+                    // turn the heater power on
+                    grpcEquipServerClient.heaterPower(1);
+
+                    // send the equip runned time to user client every second until it reach the time that user setting
+                    while (userRunningHeaterTime <= heaterRunTime && !Thread.currentThread().isInterrupted()) {
+
+                        Thread.sleep(1000);
+                        userRunningHeaterTime += grpcEquipServerClient.equipStatus("heater");
+                    }
+
+                    // time is out, turn the heater power off
+                    grpcEquipServerClient.heaterPower(0);
+
+
+                    //  make 'heaterSmartController' ready to run
+                    isUserRunningHeater = false;
+
+                    // make 'heaterSmartController' keep running
+                    heaterThreadLock.notifyAll();
+
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+
+                } finally {
+
+                    // if this thread shut off by error,
+                    // then turn off the heater, and complete the grpc response to user client
+                    // then make 'heaterSmartController' keep running
+                    grpcEquipServerClient.heaterPower(0);
+
+                    System.out.println("Heater stops running");
+
+                    isUserRunningHeater = false;
+                    heaterThreadLock.notifyAll();
+                }
+            }
+        }
+    }
+
+    static class UserRunsSprinkler extends Thread {
+        long equipRuntime;
+
+        public UserRunsSprinkler(long equipRuntime) {
+            this.equipRuntime = equipRuntime;
+        }
+
+        public void run() {
+            synchronized (sprinklerThreadLock) {
+                try {
+                    System.out.println("Sprinkler starts running based on user request ...");
+
+                    // turn the sprinkler power on
+                    grpcEquipServerClient.sprinklerPower(1);
+
+
+                    // send the equip runned time to user client every second until it reach the time that user setting
+                    while (userRunningSprinklerTime <= equipRuntime && !Thread.currentThread().isInterrupted()) {
+
+                        Thread.sleep(1000);
+                        userRunningSprinklerTime += grpcEquipServerClient.equipStatus("sprinkler");
+
+                    }
+
+                    // time is out, turn the sprinkler off
+                    grpcEquipServerClient.sprinklerPower(0);
+
+                    // make 'sprinklerSmartController' ready to run
+                    isUserRunningSprinkler = false;
+
+                    // make 'sprinklerSmartController' keep running
+                    sprinklerThreadLock.notifyAll();
+
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+
+                } finally {
+
+                    // if this thread shut off by error,
+                    // then turn off the heater, and complete the grpc response to user client
+                    // then make 'heaterSmartController' keep running
+                    grpcEquipServerClient.sprinklerPower(0);
+
+                    System.out.println("Sprinkler stops running");
+
+                    isUserRunningSprinkler = false;
+                    sprinklerThreadLock.notifyAll();
+                }
+            }
+        }
+    }
+
 }
 
 class DataList {
@@ -451,12 +497,12 @@ class DataList {
 
     public void addSoilTemp(int soilTemp) {
         tempList.add(soilTemp);
-        System.out.println("Add soil temp : " + soilTemp);
+//        System.out.println("Add soil temp : " + soilTemp);
     }
 
     public void addSoilHumidity(int soilHumidity) {
         humidityList.add(soilHumidity);
-        System.out.println("Add soil humidity : " + soilHumidity);
+//        System.out.println("Add soil humidity : " + soilHumidity);
     }
 
     public int getLastSoilTemp() {
@@ -473,7 +519,7 @@ class DataList {
                 e.printStackTrace();
             }
 
-        }else {
+        } else {
             temp = tempList.getLast();
         }
         return temp;
