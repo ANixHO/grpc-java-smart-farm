@@ -18,12 +18,6 @@ public class SensorServer {
     private final SensorDataCollectServiceGrpc.SensorDataCollectServiceStub stub;
     private Thread sensorServerThread;
 
-    public static void main(String[] args) {
-        SensorServer sensorServer = new SensorServer();
-        sensorServer.start();
-    }
-
-
     public SensorServer() {
         ConsulFindUtil serverFind = new ConsulFindUtil("localhost", 8500, "SmartControlServer");
         this.channel = ManagedChannelBuilder
@@ -33,6 +27,7 @@ public class SensorServer {
         this.stub = SensorDataCollectServiceGrpc.newStub(channel);
 
         this.simConnector = new SoilEnvirenmentSimulatorConnector();
+
     }
 
     public void start() {

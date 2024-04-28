@@ -9,16 +9,10 @@ import io.grpc.stub.StreamObserver;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 public class SmartControlServer {
-    public static void main(String[] args) throws IOException, InterruptedException {
-        SmartControlServer smartControlServer = new SmartControlServer();
-        smartControlServer.start();
 
-        smartControlServer.blockUntilShutdown();
-    }
 
 
     private Server server;
@@ -64,8 +58,7 @@ public class SmartControlServer {
     /*
         These two are equips running time when user runs equip
     */
-    static long userRunningHeaterTime, userRunningSprinklerTime;
-
+    static long userRunningHeaterTimeLeft, userRunningSprinklerTimeLeft;
 
 
     public SmartControlServer() {
@@ -159,28 +152,29 @@ public class SmartControlServer {
                     /*
                         run heater or sprinkler depends on user request
                      */
-                    if(equipName.equals("heater")){
+                    if (equipName.equals("heater")) {
 
                         // make heater automation controller step into waiting status
                         isUserRunningHeater = true;
 
                         // initialise the real heater running time
-                        userRunningHeaterTime = 0L;
+                        userRunningHeaterTimeLeft = equipRuntime;
+
 
                         // initialise the manual heater runner thread and start
-                        Thread userRunsHeater = new Thread(new UserRunsHeater(equipRuntime));
+                        Thread userRunsHeater = new Thread(new UserRunsHeater());
                         userRunsHeater.start();
 
                         // send heater running time every second till running time reach the target time
-                        while (userRunningHeaterTime <= equipRuntime) {
+                        while (userRunningHeaterTimeLeft >= 0) {
                             UserMonitorAndControlServiceProto.EquipRunningStatusRes res = UserMonitorAndControlServiceProto.EquipRunningStatusRes
                                     .newBuilder()
                                     .setEquipName(equipName)
-                                    .setEquipRunningTime(userRunningHeaterTime)
+                                    .setEquipRunningTime(userRunningHeaterTimeLeft)
                                     .build();
                             resObserver.onNext(res);
 
-                            System.out.println("\nUser control "+ equipName + " for " + userRunningHeaterTime + " seconds;\n");
+                            System.out.println("\nUser control " + equipName + " for " + userRunningHeaterTimeLeft + " seconds left;\n");
 
                             try {
                                 Thread.sleep(1000);
@@ -196,22 +190,22 @@ public class SmartControlServer {
                         isUserRunningSprinkler = true;
 
                         // initialise the real sprinkler running time
-                        userRunningSprinklerTime = 0L;
+                        userRunningSprinklerTimeLeft = equipRuntime;
 
                         // initialise the manual sprinkler runner thread and start
-                        Thread userRunsSprinkler = new Thread(new UserRunsSprinkler(equipRuntime));
+                        Thread userRunsSprinkler = new Thread(new UserRunsSprinkler());
                         userRunsSprinkler.start();
 
                         // send sprinkler running time every second till running time reach the target time
-                        while (userRunningSprinklerTime <= equipRuntime) {
+                        while (userRunningSprinklerTimeLeft >= 0) {
                             UserMonitorAndControlServiceProto.EquipRunningStatusRes res = UserMonitorAndControlServiceProto.EquipRunningStatusRes
                                     .newBuilder()
                                     .setEquipName(equipName)
-                                    .setEquipRunningTime(userRunningSprinklerTime)
+                                    .setEquipRunningTime(userRunningSprinklerTimeLeft)
                                     .build();
                             resObserver.onNext(res);
 
-                            System.out.println("\nUser control "+ equipName + " for " + userRunningSprinklerTime + " seconds;\n");
+                            System.out.println("\nUser control " + equipName + " for " + userRunningSprinklerTimeLeft + " seconds left;\n");
 
                             try {
                                 Thread.sleep(1000);
@@ -380,9 +374,7 @@ public class SmartControlServer {
     }
 
     static class UserRunsHeater implements Runnable {
-        long heaterRunTime;
-        public UserRunsHeater(long heaterRunTime) {
-            this.heaterRunTime = heaterRunTime;
+        public UserRunsHeater() {
         }
 
         @Override
@@ -395,10 +387,10 @@ public class SmartControlServer {
                     grpcEquipServerClient.heaterPower(1);
 
                     // send the equip runned time to user client every second until it reach the time that user setting
-                    while (userRunningHeaterTime <= heaterRunTime && !Thread.currentThread().isInterrupted()) {
+                    while (userRunningHeaterTimeLeft >= 0 && !Thread.currentThread().isInterrupted()) {
 
                         Thread.sleep(1000);
-                        userRunningHeaterTime += grpcEquipServerClient.equipStatus("heater");
+                        userRunningHeaterTimeLeft -= grpcEquipServerClient.equipStatus("heater");
                     }
 
                     // time is out, turn the heater power off
@@ -432,10 +424,8 @@ public class SmartControlServer {
     }
 
     static class UserRunsSprinkler extends Thread {
-        long equipRuntime;
 
-        public UserRunsSprinkler(long equipRuntime) {
-            this.equipRuntime = equipRuntime;
+        public UserRunsSprinkler() {
         }
 
         public void run() {
@@ -448,10 +438,10 @@ public class SmartControlServer {
 
 
                     // send the equip runned time to user client every second until it reach the time that user setting
-                    while (userRunningSprinklerTime <= equipRuntime && !Thread.currentThread().isInterrupted()) {
+                    while (userRunningSprinklerTimeLeft >= 0 && !Thread.currentThread().isInterrupted()) {
 
                         Thread.sleep(1000);
-                        userRunningSprinklerTime += grpcEquipServerClient.equipStatus("sprinkler");
+                        userRunningSprinklerTimeLeft -= grpcEquipServerClient.equipStatus("sprinkler");
 
                     }
 
@@ -506,7 +496,7 @@ class DataList {
     }
 
     public int getLastSoilTemp() {
-        int temp = -1000;
+        int temp;
 
         /*
             If there is no data in the temp list,
@@ -519,14 +509,15 @@ class DataList {
                 e.printStackTrace();
             }
 
-        } else {
-            temp = tempList.getLast();
         }
+
+        temp = tempList.getLast();
+
         return temp;
     }
 
     public int getLastSoilHumidity() {
-        int humidity = -1000;
+        int humidity;
 
         /*
             If there is no data in the humidity list,
@@ -538,9 +529,10 @@ class DataList {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        } else {
-            humidity = humidityList.getLast();
         }
+
+        humidity = humidityList.getLast();
+
         return humidity;
     }
 }

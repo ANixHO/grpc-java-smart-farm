@@ -11,19 +11,17 @@ import java.io.IOException;
 
 public class EquipServer {
     private Server server;
+    public EquipPower equipPower;
+    private Thread equipControl;
 
-    public static void main(String[] args) throws InterruptedException, IOException {
-        EquipPower equipPower = new EquipPower();
-        Thread equipControl = new Thread(new EquipController(equipPower));
+    public EquipServer() throws InterruptedException, IOException {
+        equipPower = new EquipPower();
+        equipControl = new Thread(new EquipController(equipPower));
         equipControl.start();
-
-        EquipServer equipServer = new EquipServer();
-        equipServer.start(equipPower);
-        equipServer.blockUntilShutdown();
 
     }
 
-    private void start(EquipPower equipPower) throws IOException {
+    public void start() throws IOException {
         int port = 50061;
         server = ServerBuilder.forPort(port)
                 .addService(new EquipServerImpl(equipPower))
@@ -98,6 +96,10 @@ public class EquipServer {
     }
 }
 
+/*
+    Equip power unit
+    Save and change the power status of heater and sprinkler
+ */
 class EquipPower {
 
     // 0 is power off, 1 is power on
@@ -121,7 +123,7 @@ class EquipPower {
         } else if (heaterPower == 1) {
             heaterPower = 0;
         }
-        System.out.println("change heater power status: " + heaterPower);
+        System.out.println("Equip power unit: Heater power changes to " + heaterPower);
     }
 
     public void changeSprinklerPower() {
@@ -130,7 +132,7 @@ class EquipPower {
         } else if (sprinklerPower == 1) {
             sprinklerPower = 0;
         }
-        System.out.println("change sprinkler power status: " + sprinklerPower);
+        System.out.println("Equip power unit: Sprinkler power changes to " + sprinklerPower);
     }
 
     public String statusCodeToString(int statusCode) {
@@ -142,6 +144,11 @@ class EquipPower {
     }
 }
 
+/*
+    Equip controller unit
+    This is a thread class that when heater or sprinkler is power on
+    it will send adjustment value of temp or humidity to soil sim simulator via 'SoilEnvirenmentSimulatorConnector'
+ */
 class EquipController implements Runnable {
     private final EquipPower equipPower;
     private final SoilEnvirenmentSimulatorConnector connector;
@@ -157,6 +164,7 @@ class EquipController implements Runnable {
         while (true) {
             System.out.print("");
 
+            // if sprinkler or heater is power on, the sum of two equip power is larger than 0
             if ((equipPower.getSprinklerPower() + equipPower.getHeaterPower()) > 0) {
                 String adjustResult = adjustTempAndHumidity();
                 System.out.println(adjustResult);
@@ -172,6 +180,8 @@ class EquipController implements Runnable {
     }
 
 
+    // check the power of heater and sprinkler
+    // then set the adjustment value of temp and humidity
     public String adjustTempAndHumidity() {
         int tempUpVal = 0;
         int humidityUpVal = 0;
