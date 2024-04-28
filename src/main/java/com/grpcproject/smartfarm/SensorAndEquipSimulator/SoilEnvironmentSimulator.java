@@ -6,16 +6,29 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class SoilEnvironmentSimulator {
-    public static void main(String[] args) {
-        final Data data = new Data(20, 50);
 
-        Thread sensor = new Thread(new Sensor(data));
-        Thread soilSim = new Thread(new SoilSim(data));
-        Thread equip = new Thread(new Equip(data));
+    static final Data soilData = new Data(20, 20);
 
+    private final Thread sensor, soilSim, equip;
+
+    public SoilEnvironmentSimulator() {
+
+        sensor = new Thread(new Sensor());
+        soilSim = new Thread(new SoilSim());
+        equip = new Thread(new Equip());
+
+    }
+
+    public void start() {
         soilSim.start();
         sensor.start();
         equip.start();
+    }
+
+    public void shutdown(){
+        equip.interrupt();
+        sensor.interrupt();
+        soilSim.interrupt();
     }
 
 
@@ -64,14 +77,12 @@ public class SoilEnvironmentSimulator {
         and temp drop down or up every 10 seconds.
      */
     static class SoilSim implements Runnable {
-        private final Data soilData;
 
         private int airTempCur;
         private int airTempUpVal = -1;
 
 
-        public SoilSim(Data data) {
-            this.soilData = data;
+        public SoilSim() {
             airTempCur = 25;
         }
 
@@ -142,10 +153,8 @@ public class SoilEnvironmentSimulator {
         and it will modify the temp and humidity
     */
     static class Equip implements Runnable {
-        private final Data soilData;
 
-        public Equip(Data data) {
-            this.soilData = data;
+        public Equip() {
         }
 
         @Override
@@ -187,10 +196,8 @@ public class SoilEnvironmentSimulator {
         send an array that contains current temp and humidity
      */
     static class Sensor implements Runnable {
-        private final Data soilData;
 
-        public Sensor(Data data) {
-            this.soilData = data;
+        public Sensor() {
         }
 
         @Override

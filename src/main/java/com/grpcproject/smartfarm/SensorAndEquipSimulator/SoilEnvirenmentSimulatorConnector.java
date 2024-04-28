@@ -33,14 +33,12 @@ public class SoilEnvirenmentSimulatorConnector {
                 sensorData = "SoilSim Response: " + in.readLine();
                 System.out.println(sensorData);
 
-                // Close connections for this request
                 out.close();
                 in.close();
             } catch (SocketTimeoutException e) {
                 System.out.println("Timeout: Server took too long to respond.");
             }
 
-            // Close the socket
             clientSocket.close();
 
 
@@ -66,10 +64,7 @@ public class SoilEnvirenmentSimulatorConnector {
             ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
             arr = (int[]) in.readObject();
 
-            // Close connections for this request
             in.close();
-
-            // Close the socket
             clientSocket.close();
 
         } catch (IOException e) {
