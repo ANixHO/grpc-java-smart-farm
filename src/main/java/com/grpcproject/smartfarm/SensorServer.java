@@ -30,14 +30,26 @@ public class SensorServer {
 
     }
 
+    /*
+        When sensor server start,
+        it will run a thread that get temp and humidity data
+        from soilsim via soilsim connector,
+        then send the data to smart control server.
+     */
     public void start() {
         sensorServerThread = new Thread(() -> {
             int[] data;
 
             while (!sensorServerThread.isInterrupted()) {
                 try {
+
+                    // get temp and humidity data from soil sim via socket
                     data = simConnector.getTempAndHumidity();
+
+                    // send it to smart control server via grpc client
                     saveSensorData(data[0], data[1]);
+
+                    // repeat process every 1 second
                     Thread.sleep(1000);
 
                 } catch (InterruptedException e) {

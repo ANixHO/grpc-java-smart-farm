@@ -49,6 +49,7 @@ public class EquipServer {
             this.equipPower = equipPower;
         }
 
+        // change the power on or off based on request
         public void equipPowerControl(EquipControlServiceProto.EquipPowerReq equipPowerReq, StreamObserver<EquipControlServiceProto.EquipPowerRes> resObserver) {
 
             String equipName = equipPowerReq.getEquipName();
@@ -71,7 +72,7 @@ public class EquipServer {
             resObserver.onCompleted();
         }
 
-
+        // response the equip power status based on request. response 1 means power is on, 0 means power is off
         public void equipStatus(EquipControlServiceProto.EquipStatusReq req, StreamObserver<EquipControlServiceProto.EquipStatusRes> resObserver) {
             String resEquipName = req.getEquipStatusRequest();
             int resEquipStatusCode = -1;

@@ -42,7 +42,7 @@ public class SmartControlServer {
     /*
        Following two boolean fields and Object fields are using for
        pause the 'heaterSmartController' and 'sprinklerSmartController' threads.
-       when user client sends a request to run the heater or sprinkler
+       when user client sends a request to run the heater or sprinkler,
        the boolean field will be changed to true,
        then the lock will execute the wait method for automatic controller thread,
        after the equip running time finish, the notifyAll method will be executed
@@ -186,7 +186,7 @@ public class SmartControlServer {
 
                     } else if (equipName.equals("sprinkler")) {
 
-                        // make sprinkler automation controller step into wating status
+                        // make sprinkler automation controller step into waiting status
                         isUserRunningSprinkler = true;
 
                         // initialise the real sprinkler running time
@@ -196,7 +196,7 @@ public class SmartControlServer {
                         Thread userRunsSprinkler = new Thread(new UserRunsSprinkler());
                         userRunsSprinkler.start();
 
-                        // send sprinkler running time every second till running time reach the target time
+                        // send sprinkler running time every second until running time reach the target time
                         while (userRunningSprinklerTimeLeft >= 0) {
                             UserMonitorAndControlServiceProto.EquipRunningStatusRes res = UserMonitorAndControlServiceProto.EquipRunningStatusRes
                                     .newBuilder()
@@ -476,6 +476,10 @@ public class SmartControlServer {
 
 }
 
+/*
+    DataList will store the temp in a list, store the humidity in a list
+    and provide methods that add and get data from each list
+ */
 class DataList {
     private final List<Integer> tempList;
     private final List<Integer> humidityList;
@@ -487,12 +491,10 @@ class DataList {
 
     public void addSoilTemp(int soilTemp) {
         tempList.add(soilTemp);
-//        System.out.println("Add soil temp : " + soilTemp);
     }
 
     public void addSoilHumidity(int soilHumidity) {
         humidityList.add(soilHumidity);
-//        System.out.println("Add soil humidity : " + soilHumidity);
     }
 
     public int getLastSoilTemp() {
