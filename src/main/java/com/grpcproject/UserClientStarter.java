@@ -47,8 +47,8 @@ public class UserClientStarter {
                     System.out.println("  " + userClientStarter.heaterStatusMessage);
                     System.out.println("  " + userClientStarter.sprinklerStatusMessage);
                     System.out.println(
-                            "\n  Press 'H' to run heater" +
-                                    "\n  Press 'S' to run Sprinkler" +
+                            "\n  Press 'H' to run HEATER" +
+                                    "\n  Press 'S' to run SPRINKLER" +
                                     "\n  Press 'Q' to quit");
 
 
@@ -90,36 +90,39 @@ public class UserClientStarter {
 
     }
 
+    // get current temp and humidity from user client via grpc
+    // and save data to the string fields
     public void updateSensorData() {
         userClient.refreshSensorData();
 
         temp = "Temperature: " + userClient.getCurTemp();
         humidity = "Humidity: " + userClient.getCurHumidity();
-
-
     }
 
+    // when user want to run equip and input a alphabet,
+    // it will execute the runEquipment method of userClient
     public void processUserInput(String userInput) {
 
         isUserEntering = true;
 
-        if (userInput.equals("H")) {
+        if (userInput.equalsIgnoreCase("H")) {
             System.out.println("Please enter the runtime (seconds) for HEATER ");
             heaterRuntime = Long.parseLong(scanner.nextLine());
             userClient.runEquipment("heater", heaterRuntime);
 
-        } else if (userInput.equals("S")) {
+        } else if (userInput.equalsIgnoreCase("S")) {
             System.out.println("Please enter the runtime (seconds) for SPRINKLER ");
             sprinklerRuntime = Long.parseLong(scanner.nextLine());
             userClient.runEquipment("sprinkler", sprinklerRuntime);
 
-        } else if (userInput.equals("Q")) {
+        } else if (userInput.equalsIgnoreCase("Q")) {
             System.out.println("System shut down.....");
             terminate = true;
 
         } else {
-            isUserEntering = false;
+            System.out.println("\nPlease enter the correct alphabet. \nYou only can input 'H', 'S' and 'Q' ");
         }
+
         isUserEntering = false;
 
         lock.notifyAll();
@@ -127,6 +130,8 @@ public class UserClientStarter {
     }
 
 
+    // This thread is a nonblocking input watching thread
+    // it will get the user input, but will not stop the main thread which displays the temp and humidity
     static class NonBlockingInputThread extends Thread {
         private volatile boolean inputAvailable = false;
         private String input;
@@ -149,6 +154,8 @@ public class UserClientStarter {
 
                         if (bytesRead > 0) {
                             inputAvailable = true;
+                            // it will accept one alphabet and one enter key
+                            // I only need first alphabet and store it to input string field
                             input = new String(inputBytes, 0, 1);
                         }
                     }
