@@ -12,15 +12,15 @@ service EquipControlService{
 }
 
 message EquipPowerReq{
-  string equipName = 1; // stream request, send equip name, then sever will change the power status
+  string equipName = 1; // send equip name, then sever will change the power status
 }
 
 message EquipPowerRes{
-  string equipPowerStatus = 1; // unary response, response success sentence
+  string equipPowerStatus = 1; // response success sentence
 }
 
 message EquipStatusReq{
-  string equipStatusRequest = 1; // unary request, send the equip name that want to check status
+  string equipStatusRequest = 1; // send the equip name that want to check status
 }
 
 message EquipStatusRes{

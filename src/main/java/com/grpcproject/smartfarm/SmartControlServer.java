@@ -109,20 +109,24 @@ public class SmartControlServer {
     static class UserMonitorAndControlServiceImpl extends UserMonitorAndControlServiceGrpc.UserMonitorAndControlServiceImplBase {
 
         // when user request the soil temp and humidity data, the following method will return these data.
-        public void refreshSensorData(UserMonitorAndControlServiceProto.RefreshSensorDataReq req, StreamObserver<UserMonitorAndControlServiceProto.RefreshSensorDataRes> resObserver) {
+        public void refreshSensorData(
+                UserMonitorAndControlServiceProto.RefreshSensorDataReq req,
+                StreamObserver<UserMonitorAndControlServiceProto.RefreshSensorDataRes> resObserver) {
             String reqMessage = req.getRequest();
             System.out.println("Request from user: " + reqMessage);
 
             int temp = dataList.getLastSoilTemp();
             int humidity = dataList.getLastSoilHumidity();
 
-            UserMonitorAndControlServiceProto.RefreshSensorDataRes tempRes = UserMonitorAndControlServiceProto.RefreshSensorDataRes
+            UserMonitorAndControlServiceProto.RefreshSensorDataRes tempRes =
+                    UserMonitorAndControlServiceProto.RefreshSensorDataRes
                     .newBuilder()
                     .setSensorName("soil temp")
                     .setSensorData(temp)
                     .build();
 
-            UserMonitorAndControlServiceProto.RefreshSensorDataRes humidityRes = UserMonitorAndControlServiceProto.RefreshSensorDataRes
+            UserMonitorAndControlServiceProto.RefreshSensorDataRes humidityRes =
+                    UserMonitorAndControlServiceProto.RefreshSensorDataRes
                     .newBuilder()
                     .setSensorName("soil humidity")
                     .setSensorData(humidity)
@@ -140,7 +144,8 @@ public class SmartControlServer {
              In the meantime, the automatic controller thread will be paused.
          */
         @Override
-        public StreamObserver<UserMonitorAndControlServiceProto.RunEquipReq> runEquipment(StreamObserver<UserMonitorAndControlServiceProto.EquipRunningStatusRes> resObserver) {
+        public StreamObserver<UserMonitorAndControlServiceProto.RunEquipReq> runEquipment(
+                StreamObserver<UserMonitorAndControlServiceProto.EquipRunningStatusRes> resObserver) {
             return new StreamObserver<UserMonitorAndControlServiceProto.RunEquipReq>() {
                 @Override
                 public void onNext(UserMonitorAndControlServiceProto.RunEquipReq req) {
@@ -167,14 +172,16 @@ public class SmartControlServer {
 
                         // send heater running time every second till running time reach the target time
                         while (userRunningHeaterTimeLeft >= 0) {
-                            UserMonitorAndControlServiceProto.EquipRunningStatusRes res = UserMonitorAndControlServiceProto.EquipRunningStatusRes
+                            UserMonitorAndControlServiceProto.EquipRunningStatusRes res =
+                                    UserMonitorAndControlServiceProto.EquipRunningStatusRes
                                     .newBuilder()
                                     .setEquipName(equipName)
                                     .setEquipRunningTime(userRunningHeaterTimeLeft)
                                     .build();
                             resObserver.onNext(res);
 
-                            System.out.println("\nUser control " + equipName + " for " + userRunningHeaterTimeLeft + " seconds left;\n");
+                            System.out.println("\nUser control " + equipName + " for "
+                                    + userRunningHeaterTimeLeft + " seconds left;\n");
 
                             try {
                                 Thread.sleep(1000);
@@ -198,14 +205,16 @@ public class SmartControlServer {
 
                         // send sprinkler running time every second until running time reach the target time
                         while (userRunningSprinklerTimeLeft >= 0) {
-                            UserMonitorAndControlServiceProto.EquipRunningStatusRes res = UserMonitorAndControlServiceProto.EquipRunningStatusRes
+                            UserMonitorAndControlServiceProto.EquipRunningStatusRes res =
+                                    UserMonitorAndControlServiceProto.EquipRunningStatusRes
                                     .newBuilder()
                                     .setEquipName(equipName)
                                     .setEquipRunningTime(userRunningSprinklerTimeLeft)
                                     .build();
                             resObserver.onNext(res);
 
-                            System.out.println("\nUser control " + equipName + " for " + userRunningSprinklerTimeLeft + " seconds left;\n");
+                            System.out.println("\nUser control " + equipName + " for " +
+                                    userRunningSprinklerTimeLeft + " seconds left;\n");
 
                             try {
                                 Thread.sleep(1000);
@@ -236,7 +245,8 @@ public class SmartControlServer {
     static class SensorDataCollectServiceImpl extends SensorDataCollectServiceGrpc.SensorDataCollectServiceImplBase {
 
         @Override
-        public StreamObserver<SensorDataCollectServiceProto.SaveSensorDataReq> saveSensorData(StreamObserver<SensorDataCollectServiceProto.SaveSensorDataRes> resObserver) {
+        public StreamObserver<SensorDataCollectServiceProto.SaveSensorDataReq> saveSensorData(
+                StreamObserver<SensorDataCollectServiceProto.SaveSensorDataRes> resObserver) {
             return new StreamObserver<>() {
                 @Override
                 public void onNext(SensorDataCollectServiceProto.SaveSensorDataReq saveSensorDataReq) {
@@ -258,7 +268,8 @@ public class SmartControlServer {
                 @Override
                 public void onCompleted() {
                     System.out.println("Sensor data streaming completed");
-                    SensorDataCollectServiceProto.SaveSensorDataRes res = SensorDataCollectServiceProto.SaveSensorDataRes
+                    SensorDataCollectServiceProto.SaveSensorDataRes res =
+                            SensorDataCollectServiceProto.SaveSensorDataRes
                             .newBuilder()
                             .setResponse("Save sensor data completed")
                             .build();

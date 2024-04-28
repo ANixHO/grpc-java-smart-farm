@@ -50,7 +50,8 @@ public class EquipServer {
         }
 
         // change the power on or off based on request
-        public void equipPowerControl(EquipControlServiceProto.EquipPowerReq equipPowerReq, StreamObserver<EquipControlServiceProto.EquipPowerRes> resObserver) {
+        public void equipPowerControl(EquipControlServiceProto.EquipPowerReq equipPowerReq,
+                                      StreamObserver<EquipControlServiceProto.EquipPowerRes> resObserver) {
 
             String equipName = equipPowerReq.getEquipName();
             if (equipName.equals("heater")) {
@@ -73,7 +74,8 @@ public class EquipServer {
         }
 
         // response the equip power status based on request. response 1 means power is on, 0 means power is off
-        public void equipStatus(EquipControlServiceProto.EquipStatusReq req, StreamObserver<EquipControlServiceProto.EquipStatusRes> resObserver) {
+        public void equipStatus(EquipControlServiceProto.EquipStatusReq req,
+                                StreamObserver<EquipControlServiceProto.EquipStatusRes> resObserver) {
             String resEquipName = req.getEquipStatusRequest();
             int resEquipStatusCode = -1;
 
@@ -85,7 +87,8 @@ public class EquipServer {
                 resEquipStatusCode = equipPower.getSprinklerPower();
             }
 
-            EquipControlServiceProto.EquipStatusRes res = EquipControlServiceProto.EquipStatusRes
+            EquipControlServiceProto.EquipStatusRes res =
+                    EquipControlServiceProto.EquipStatusRes
                     .newBuilder()
                     .setEquipStatusCode(resEquipStatusCode)
                     .build();
